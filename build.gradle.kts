@@ -30,9 +30,6 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    filter {
-        includeTestsMatching("com.example.leet.code.*")
-    }
 }
 
 tasks.withType<KotlinCompile> {

@@ -8,7 +8,6 @@ class LeetCodeApplicationTests {
 
     @Test
     fun contextLoadsTest() {
-        throw RuntimeException()
     }
 
 }
