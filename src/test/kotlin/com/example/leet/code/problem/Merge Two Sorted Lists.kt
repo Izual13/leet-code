@@ -45,25 +45,23 @@ class `Merge Two Sorted Lists` {
             when {
                 v1 == null -> {
                     tmp.next = ListNode(v2!!)
-                    tmp = tmp.next!!
                     t2 = t2?.next
                 }
                 v2 == null -> {
                     tmp.next = ListNode(v1)
-                    tmp = tmp.next!!
                     t1 = t1?.next
                 }
                 v1 <= v2 -> {
                     tmp.next = ListNode(v1)
-                    tmp = tmp.next!!
                     t1 = t1?.next
                 }
                 else -> {
                     tmp.next = ListNode(v2)
-                    tmp = tmp.next!!
                     t2 = t2?.next
                 }
             }
+
+            tmp = tmp.next!!
         }
 
         return result.next
