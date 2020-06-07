@@ -13,19 +13,14 @@ class `Maximum Subarray` {
     }
 
     private fun maxSubArray(nums: IntArray): Int {
-        if (nums.size == 1) {
-            return nums.first()
-        }
-        var maxValue = nums.first()
-        var result = maxValue
+        var result = nums.first()
 
         for (i in 1 until nums.size) {
-            maxValue = Math.max(nums[i], maxValue + nums[i])
+            nums[i] = Math.max(nums[i], nums[i - 1] + nums[i])
 
-            if (maxValue > result) {
-                result = maxValue
+            if (nums[i] > result) {
+                result = nums[i]
             }
-
         }
 
         return result
