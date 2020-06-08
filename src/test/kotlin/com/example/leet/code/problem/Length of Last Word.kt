@@ -25,14 +25,14 @@ class `Length of Last Word` {
         var length = 0
         var ignoreEmpty = 0
 
-        for (i in s.toCharArray()) {
-            if (i == ' ') {
+        for (i in s.indices) {
+            if (s[i] != ' ') {
+                length++
+            } else {
                 if (length > 0) {
                     ignoreEmpty = length
                 }
                 length = 0
-            } else {
-                length++
             }
         }
         return if (length > 0) length else ignoreEmpty
