@@ -18,15 +18,13 @@ class `Add Binary` {
     }
 
     private fun addBinary(a: String, b: String): String {
-
-        val result = StringBuffer(Integer.max(a.length, b.length))
         var i = a.length - 1
         var j = b.length - 1
-
+        val result = StringBuffer(Integer.max(i, j) + 2)
         var tmp = false
-        while (i >= 0 && j >= 0) {
-            val x = a[i] == '1'
-            val y = b[j] == '1'
+        while (i >= 0 || j >= 0) {
+            val x = if (i >= 0) a[i--] == '1' else false
+            val y = if (j >= 0) b[j--] == '1' else false
 
             if (x && y && tmp) {
                 result.append("1")
@@ -39,41 +37,11 @@ class `Add Binary` {
             } else {
                 result.append(0)
             }
-
-            i--
-            j--
-        }
-
-        while (i >= 0) {
-            val x = a[i--] == '1'
-
-            if (x && tmp) {
-                result.append("0")
-            } else if (x || tmp) {
-                result.append("1")
-                tmp = false
-            } else {
-                result.append("0")
-            }
-        }
-
-        while (j >= 0) {
-            val x = b[j--] == '1'
-
-            if (x && tmp) {
-                result.append("0")
-            } else if (x || tmp) {
-                result.append("1")
-                tmp = false
-            } else {
-                result.append("0")
-            }
         }
 
         if (tmp) {
             result.append("1")
         }
-
 
         return result.reverse().toString()
     }
