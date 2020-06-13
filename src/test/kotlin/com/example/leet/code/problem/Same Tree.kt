@@ -11,20 +11,6 @@ class `Same Tree` {
         var right: TreeNode? = null
     }
 
-    /**
-     * Example:
-     * var ti = TreeNode(5)
-     * var v = ti.`val`
-     * Definition for a binary tree node.
-     *
-     */
-//    Input:     1         1
-//    / \       / \
-//    2   3     2   3
-//
-//    [1,2,3],   [1,2,3]
-
-
     @Test
     fun test1() {
         val t1 = TreeNode(1)
