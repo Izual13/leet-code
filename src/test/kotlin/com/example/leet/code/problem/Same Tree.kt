@@ -56,11 +56,11 @@ class `Same Tree` {
             return true
         }
 
-        if ((p == null && q != null) || (q == null && p != null)) {
+        if (p == null || q == null) {
             return false
         }
 
-        if (p!!.`val` != q!!.`val`) {
+        if (p.`val` != q.`val`) {
             return false
         }
 
