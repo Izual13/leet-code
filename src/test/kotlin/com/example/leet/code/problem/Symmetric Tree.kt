@@ -2,6 +2,8 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.util.*
+
 
 @Suppress("ClassName")
 class `Symmetric Tree` {
@@ -112,57 +114,28 @@ class `Symmetric Tree` {
             return false
         }
 
-        if (root.left!!.`val` != root.right!!.`val`) {
-            return false
-        }
-
-        val array1 = getlArray(root.left!!)
-        val array2 = getrArray(root.right!!)
-
-        if (array1.size != array2.size) {
-            return false
-        }
-
-        for (i in array1.indices) {
-            if (array1[i] == null && array2[i] == null) {
+        val list = LinkedList<TreeNode?>()
+        list.add(root.left!!)
+        list.add(root.right!!)
+        while (!list.isEmpty()) {
+            val t1 = list.poll()
+            val t2 = list.poll()
+            if (t1 == null && t2 == null) {
                 continue
             }
-
-            if (array1[i] != array2[i]) {
+            if (t1 == null || t2 == null) {
                 return false
             }
+            if (t1.`val` != t2.`val`) {
+                return false
+            }
+            list.add(t1.left)
+            list.add(t2.right)
+            list.add(t1.right)
+            list.add(t2.left)
         }
-
-
         return true
     }
 
-    private fun getlArray(t: TreeNode?, result: ArrayList<Int?> = ArrayList()): List<Int?> {
-        if (t == null) {
-            return result
-        }
-
-        result.add(t.left?.`val`)
-        result.add(t.right?.`val`)
-
-        getlArray(t.left, result)
-        getlArray(t.right, result)
-
-        return result
-    }
-
-    private fun getrArray(t: TreeNode?, result: ArrayList<Int?> = ArrayList()): List<Int?> {
-        if (t == null) {
-            return result
-        }
-
-        result.add(t.right?.`val`)
-        result.add(t.left?.`val`)
-
-        getrArray(t.right, result)
-        getrArray(t.left, result)
-
-        return result
-    }
 
 }
