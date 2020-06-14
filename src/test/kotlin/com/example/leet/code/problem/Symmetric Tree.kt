@@ -11,12 +11,6 @@ class `Symmetric Tree` {
         var right: TreeNode? = null
     }
 
-//    1
-//    / \
-//    2   2
-//    / \ / \
-//    3  4 4  3
-
     @Test
     fun test1() {
         val t1 = TreeNode(1)
@@ -50,14 +44,11 @@ class `Symmetric Tree` {
         t1.right = TreeNode(2)
 
         t1.left!!.right = TreeNode(3)
-
         t1.right!!.right = TreeNode(3)
-
 
         Assertions.assertEquals(false, isSymmetric(t1))
     }
 
-    //    [2,3,3,4,5,5,4,null,null,8,9,9,8]
     @Test
     fun test4() {
         val t1 = TreeNode(2)
@@ -85,7 +76,6 @@ class `Symmetric Tree` {
         Assertions.assertEquals(true, isSymmetric(t1))
     }
 
-    //  [9,-42,-42,null,76,76,null,null,13,null,13]
     @Test
     fun test5() {
         val t1 = TreeNode(9)
@@ -152,10 +142,6 @@ class `Symmetric Tree` {
             return result
         }
 
-//        if (t.left == null && t.right == null) {
-//            return result
-//        }
-
         result.add(t.left?.`val`)
         result.add(t.right?.`val`)
 
@@ -169,10 +155,6 @@ class `Symmetric Tree` {
         if (t == null) {
             return result
         }
-
-//        if (t.left == null && t.right == null) {
-//            return result
-//        }
 
         result.add(t.right?.`val`)
         result.add(t.left?.`val`)
