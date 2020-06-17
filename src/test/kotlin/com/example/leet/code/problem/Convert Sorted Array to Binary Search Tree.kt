@@ -21,51 +21,12 @@ class `Convert Sorted Array to Binary Search Tree` {
         Assertions.assertEquals(tree?.right?.left?.`val`, 5)
     }
 
-    private fun sortedArrayToBST(nums: IntArray): TreeNode? {
-        if (nums.isEmpty()) {
-            return null
-        }
-
-        val middle = nums.size / 2
-        val tree = TreeNode(nums[middle])
-
-        left(nums, tree, 0, middle - 1)
-        right(nums, tree, middle + 1, nums.size - 1)
-
+    private fun sortedArrayToBST(nums: IntArray, i: Int = 0, j: Int = nums.size): TreeNode? {
+        if (nums.isEmpty() || i >= j) return null
+        val mid = i + (j - i) / 2
+        val tree = TreeNode(nums[mid])
+        tree.left = sortedArrayToBST(nums, i, mid)
+        tree.right = sortedArrayToBST(nums, mid + 1, j)
         return tree
-    }
-
-    private fun left(nums: IntArray, root: TreeNode, i: Int, j: Int): TreeNode? {
-        if (nums.isEmpty()) {
-            return null
-        } else if (i > j) {
-            return null
-        }
-
-        val middle = (i + j + 1) / 2
-
-        root.left = TreeNode(nums[middle])
-
-        left(nums, root.left!!, i, middle - 1)
-        right(nums, root.left!!, middle + 1, j)
-
-        return root
-    }
-
-    private fun right(nums: IntArray, root: TreeNode, i: Int, j: Int): TreeNode? {
-        if (nums.isEmpty()) {
-            return null
-        } else if (i > j) {
-            return null
-        }
-
-        val middle = (i + j + 1) / 2
-
-        root.right = TreeNode(nums[middle])
-
-        left(nums, root.right!!, i, middle - 1)
-        right(nums, root.right!!, middle + 1, j)
-
-        return root
     }
 }
