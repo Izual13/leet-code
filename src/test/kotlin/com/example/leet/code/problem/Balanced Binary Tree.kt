@@ -2,7 +2,6 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.*
 
 @Suppress("ClassName")
 class `Balanced Binary Tree` {
@@ -75,45 +74,42 @@ class `Balanced Binary Tree` {
         Assertions.assertEquals(true, isBalanced(tree))
     }
 
+    @Test
+    fun test5() {
+        val tree = TreeNode(3)
+        tree.left = TreeNode(9)
+        tree.right = TreeNode(20)
+
+        tree.right!!.left = TreeNode(15)
+        tree.right!!.right = TreeNode(7)
+        Assertions.assertEquals(true, isBalanced(tree))
+    }
+
     private fun isBalanced(root: TreeNode?): Boolean {
         if (root == null) {
             return true
         }
 
-        val l = LinkedList<Pair<Int, TreeNode?>>()
-        l.push(0 to root)
-        var maxl: Int? = null
-        var minl: Int? = null
+        return getDepth(root) > 0
+    }
 
-        while (l.isNotEmpty()) {
-            val pop = l.pop()
-
-            if (pop.second == null) {
-
-                if (minl == null || maxl == null) {
-                    minl = pop.first
-                    maxl = pop.first
-
-                } else {
-                    maxl = Math.max(maxl, pop.first)
-                    minl = Math.min(minl, pop.first)
-                    if (Math.abs(minl - maxl) >= 1) {
-                        return false
-                    }
-                }
-
-
-
-                continue
-            }
-
-            l.push(pop.first + 1 to pop.second!!.left)
-            l.push(pop.first + 1 to pop.second!!.right)
-
-
+    private fun getDepth(root: TreeNode?): Int {
+        if (root == null) {
+            return 0
         }
 
-        return true
+        val left = getDepth(root.left)
+        val right = getDepth(root.right)
+
+        if (left < 0 || right < 0) {
+            return -1
+        }
+
+        if (Math.abs(left - right) > 1) {
+            return -1
+        }
+
+        return Integer.max(left, right) + 1
     }
 
 
