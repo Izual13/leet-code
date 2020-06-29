@@ -17,8 +17,8 @@ class `Balanced Binary Tree` {
         tree.left = TreeNode(9)
         tree.right = TreeNode(20)
 
-        tree.right!!.left == TreeNode(15)
-        tree.right!!.right == TreeNode(7)
+        tree.right!!.left = TreeNode(15)
+        tree.right!!.right = TreeNode(7)
 
         Assertions.assertEquals(true, isBalanced(tree))
     }
