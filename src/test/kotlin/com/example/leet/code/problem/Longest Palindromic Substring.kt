@@ -22,8 +22,6 @@ class `Longest Palindromic Substring` {
         for (i in s.indices) {
             val oddStr = longestPalindrome(s, i, i);
             val evenStr = longestPalindrome(s, i, i + 1);
-            println(oddStr)
-            println(evenStr)
 
             if (oddStr.length > longStr.length) {
                 longStr = oddStr
