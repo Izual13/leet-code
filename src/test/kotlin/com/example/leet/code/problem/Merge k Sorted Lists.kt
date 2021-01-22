@@ -51,13 +51,22 @@ class `Merge k Sorted Lists` {
             return lists[0]
         }
 
-        var result: ListNode? = lists[0]
 
-        for (i in 1 until lists.size) {
-            result = mergeLists(result, lists[i])
+        var last = lists.size - 1
+        while (last != 0) {
+            var start = 0
+            var end = last
+            while (start < end) {
+                lists[start] = mergeLists(lists[start], lists[end])
+                start++
+                end--
+            }
+            if (start >= end) {
+                last = end
+            }
         }
 
-        return result
+        return lists[0]
     }
 
     fun mergeLists(l1: ListNode?, l2: ListNode?): ListNode? {
