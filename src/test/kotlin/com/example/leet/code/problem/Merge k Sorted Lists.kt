@@ -74,21 +74,15 @@ class `Merge k Sorted Lists` {
         var t2 = l2
 
         while (t1 != null || t2 != null) {
-            if (t1 == null) {
+            if (t1 == null || (t2 != null && t1.`val` > t2.`val`)) {
                 tmp!!.next = ListNode(t2!!.`val`)
                 t2 = t2.next
-            } else if (t2 == null) {
-                tmp!!.next = ListNode(t1.`val`)
-                t1 = t1.next
-            } else if (t1.`val` < t2.`val`) {
-                tmp!!.next = ListNode(t1.`val`)
-                t1 = t1.next
             } else {
-                tmp!!.next = ListNode(t2.`val`)
-                t2 = t2.next
+                tmp!!.next = ListNode(t1.`val`)
+                t1 = t1.next
             }
 
-            tmp = tmp!!.next!!
+            tmp = tmp.next!!
         }
         return root.next
     }
