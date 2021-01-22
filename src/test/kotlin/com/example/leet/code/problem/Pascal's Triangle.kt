@@ -19,7 +19,7 @@ class `Pascal's Triangle` {
             result.add(arrayListOf(1))
         }
 
-        for (i in 1 until numRows) {
+        for (i in 0 until numRows) {
             val tmp = arrayListOf<Int>()
             tmp.add(1)
             val last = result.last()
