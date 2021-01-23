@@ -17,7 +17,7 @@ class `Longest Common Prefix` {
             return strs[0]
         }
 
-        val smallString = strs.minBy { it.length }!!
+        val smallString = strs.minByOrNull { it.length }!!
         val result = StringBuilder(smallString.length)
         for (index in smallString.indices) {
             for (str in strs) {

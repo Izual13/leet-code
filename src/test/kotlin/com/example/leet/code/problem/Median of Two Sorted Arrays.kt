@@ -37,55 +37,35 @@ class `Median of Two Sorted Arrays` {
     }
 
     private fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
-        var even = (nums1.size + nums2.size) % 2 == 0
-        var average = (nums1.size + nums2.size) / 2 + (if (even) 0 else 1)
+        val even = (nums1.size + nums2.size) % 2 == 0
+        val average = (nums1.size + nums2.size) / 2 + (if (even) 0 else 1)
         var index = 0
         var i = 0
         var j = 0
         var result = 0.0
         while (nums1.size != i || nums2.size != j) {
-            var x = 0
-            when {
-                nums1.size == i -> {
-                    x = nums2[j]
-                    j++
-                }
-                nums2.size == j -> {
-                    x = nums1[i]
-                    i++
-                }
-                nums1[i] >= nums2[j] -> {
-                    x = nums2[j]
-                    j++
-                }
-                else -> {
-                    x = nums1[i]
-                    i++
-                }
+            val x = when {
+                nums1.size == i -> nums2[j++]
+                nums2.size == j -> nums1[i++]
+                nums1[i] >= nums2[j] -> nums2[j++]
+                else -> nums1[i++]
             }
             index++
 
             if (index == average) {
-                if (even) {
+                result = if (even) {
                     val y = when {
-                        nums1.size == i -> {
-                            nums2[j]
-                        }
-                        nums2.size == j -> {
-                            nums1[i]
-                        }
-                        nums1[i] >= nums2[j] -> {
-                            nums2[j]
-                        }
-                        else -> {
-                            nums1[i]
-                        }
+                        nums1.size == i -> nums2[j]
+                        nums2.size == j -> nums1[i]
+                        nums1[i] >= nums2[j] -> nums2[j]
+                        else -> nums1[i]
+
                     }
 
-                    result = (x + y) / 2.0
+                    (x + y) / 2.0
 
                 } else {
-                    result = x + 0.0
+                    x + 0.0
                 }
                 break
             }
