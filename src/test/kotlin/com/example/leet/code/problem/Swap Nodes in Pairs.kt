@@ -47,7 +47,7 @@ class `Swap Nodes in Pairs` {
             p2.next = p1
             current.next = p2
 
-            current = current.next?.next
+            current = p1
         }
 
         return root.next
