@@ -16,11 +16,11 @@ class `Reverse Integer` {
     }
 
     private fun reverse(x: Int): Int {
-        var x = x
+        var tmp = x
         var result = 0L
-        while (x != 0) {
-            result = result * 10 + (x % 10)
-            x /= 10
+        while (tmp != 0) {
+            result = result * 10 + (tmp % 10)
+            tmp /= 10
         }
 
         if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
