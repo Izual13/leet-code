@@ -59,32 +59,41 @@ class `Reverse Nodes in k-Group` {
 
         val root = ListNode(-1)
         root.next = head
-        var current: ListNode? = root
+        var cur: ListNode? = head
+        var prev: ListNode? = root
 
 
-        while (current != null) {
-            val tmpList = mutableListOf<ListNode>()
-            var tmpNode: ListNode? = current.next
+        while (cur != null) {
+            val startGroup: ListNode? = cur
             for (i in 0 until k) {
-                if (tmpNode == null) {
+                if (cur == null) {
                     return root.next
                 }
-                tmpList.add(tmpNode)
-                tmpNode = tmpNode.next
+                cur = cur.next
             }
 
-            val firstNode = tmpList.first()
-            val lastNode = tmpList.last()
+            val lastNode = reverseGroup(startGroup, k)
+            prev!!.next = lastNode
+            startGroup!!.next = cur
+            prev = startGroup
 
-            for (i in k-1 downTo 1) {
-                tmpList[i].next = tmpList[i - 1]
-            }
-
-            tmpList[0].next = tmpNode
-            current.next = lastNode
-            current = firstNode
         }
 
         return root.next
+    }
+
+    private fun reverseGroup(head: ListNode?, k: Int): ListNode? {
+        var prev: ListNode? = null
+        var tmp: ListNode? = head
+        var next: ListNode?
+
+        for (i in 0 until k) {
+            next = tmp!!.next
+            tmp.next = prev
+            prev = tmp
+            tmp = next
+        }
+
+        return prev
     }
 }
