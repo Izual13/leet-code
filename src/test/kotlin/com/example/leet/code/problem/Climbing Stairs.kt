@@ -26,19 +26,21 @@ class `Climbing Stairs` {
         Assertions.assertEquals(1134903170, climbStairs(44))
     }
 
-    private fun climbStairs(n: Int, stepCount: Int = 0, result: AtomicInteger = AtomicInteger()): Int {
-        if (n == 0) {
-            return 0
+    private fun climbStairs(n: Int): Int {
+        if (n <= 3) {
+            return n
         }
 
-        if (n == stepCount) {
-            return result.incrementAndGet()
-        } else if (stepCount < n) {
-            climbStairs(n, stepCount + 1, result)
-            climbStairs(n, stepCount + 2, result)
+        var n1 = 2
+        var n2 = 3
+
+        for (i in 4..n){
+            val tmp = n1+n2
+            n1 = n2
+            n2 = tmp
         }
 
-        return result.get()
+        return n2
     }
 
 
