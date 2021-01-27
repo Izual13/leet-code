@@ -18,15 +18,11 @@ class `Pascal's Triangle II` {
 
 
     private fun getRow(rowIndex: Int): List<Int> {
-        val result = mutableListOf<Int>()
-
+        val result = ArrayList<Int>(rowIndex + 1)
 
         result.add(1)
-        if (rowIndex >= 1) {
-            result.add(1)
-        }
 
-        for (i in 2..rowIndex) {
+        for (i in 1..rowIndex) {
             val size = result.size
             for (j in size - 1 downTo 1) {
                 result[j] = result[j] + result[j - 1]
