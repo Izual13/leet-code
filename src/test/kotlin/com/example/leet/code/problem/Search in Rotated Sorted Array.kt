@@ -34,19 +34,19 @@ class `Search in Rotated Sorted Array` {
 
         val mid = (end - start) / 2 + start
 
-        if (nums[mid] == target) {
-            return mid
+        return if (nums[mid] == target) {
+            mid
         } else if (nums[start] <= nums[mid]) {
             if (target >= nums[start] && target < nums[mid]) {
-                return search(nums, target, start, mid - 1)
+                search(nums, target, start, mid - 1)
             } else {
-                return search(nums, target, mid + 1, end)
+                search(nums, target, mid + 1, end)
             }
         } else {
             if (target > nums[mid] && target <= nums[end]) {
-                return search(nums, target, mid + 1, end)
+                search(nums, target, mid + 1, end)
             } else {
-                return search(nums, target, start, mid - 1)
+                search(nums, target, start, mid - 1)
             }
         }
     }
