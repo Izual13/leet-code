@@ -67,16 +67,17 @@ class `Next Permutation` {
         }
 
         //swap
-        val tmp = nums[min]
-        nums[min] = nums[max]
-        nums[max] = tmp
+        swap(nums, min, max)
 
         //reverse
         for (i in min + 1..(lastIndex - min) / 2 + min) {
-            val tmp = nums[lastIndex]
-            nums[lastIndex--] = nums[i]
-            nums[i] = tmp
+            swap(nums, lastIndex--, i)
         }
+    }
 
+    private fun swap(nums: IntArray, i: Int, j: Int){
+        val tmp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = tmp
     }
 }
