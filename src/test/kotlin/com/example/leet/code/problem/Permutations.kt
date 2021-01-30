@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test
 @Suppress("ClassName")
 class Permutations {
 
-    //[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]
-
     @Test
     fun test1() {
         Assertions.assertEquals(
@@ -27,7 +25,6 @@ class Permutations {
 
 
     private fun permute(nums: IntArray, startIndex: Int = 0, result: ArrayList<List<Int>> = ArrayList()): List<List<Int>> {
-
         if (nums.size == startIndex + 1) {
             result.add(nums.toList())
             return result
