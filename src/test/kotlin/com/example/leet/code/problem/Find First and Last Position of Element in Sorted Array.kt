@@ -16,36 +16,59 @@ class `Find First and Last Position of Element in Sorted Array` {
         Assertions.assertArrayEquals(intArrayOf(-1, -1), searchRange(intArrayOf(5, 7, 7, 8, 8, 10), 6))
     }
 
+    @Test
+    fun test3() {
+        Assertions.assertArrayEquals(intArrayOf(0, 0), searchRange(intArrayOf(1, 2, 3), 1))
+    }
+
     private fun searchRange(nums: IntArray, target: Int): IntArray {
         return intArrayOf(searchStart(nums, target), searchEnd(nums, target))
     }
 
-    private fun searchStart(nums: IntArray, target: Int, index: Int = -1, start: Int = 0, end: Int = nums.lastIndex): Int {
-        if (start > end) {
-            return index
+    private fun searchStart(nums: IntArray, target: Int): Int {
+        var index = -1
+        var start = 0
+        var end = nums.lastIndex
+
+
+        while (start <= end) {
+            val mid = start + (end - start) / 2
+
+            if (nums[mid] == target) {
+                index = mid
+            }
+
+            if (nums[mid] >= target) {
+                end = mid - 1
+            } else {
+                start = mid + 1
+            }
         }
 
-        val mid = start + (end - start) / 2
-
-        return when {
-            nums[mid] == target -> searchStart(nums, target, mid, start, mid - 1)
-            nums[mid] > target -> searchStart(nums, target, index, start, mid - 1)
-            else -> searchStart(nums, target, index, mid + 1, end)
-        }
+        return index
     }
 
-    private fun searchEnd(nums: IntArray, target: Int, index: Int = -1, start: Int = 0, end: Int = nums.lastIndex): Int {
-        if (start > end) {
-            return index
+    private fun searchEnd(nums: IntArray, target: Int): Int {
+        var index = -1
+        var start = 0
+        var end = nums.lastIndex
+
+
+        while (start <= end) {
+            val mid = start + (end - start) / 2
+
+            if (nums[mid] == target) {
+                index = mid
+            }
+
+            if (nums[mid] <= target) {
+                start = mid + 1
+            } else {
+                end = mid - 1
+            }
         }
 
-        val mid = start + (end - start) / 2
-
-        return when {
-            nums[mid] == target -> searchEnd(nums, target, mid, mid + 1, end)
-            nums[mid] < target -> searchEnd(nums, target, index, mid + 1, end)
-            else -> searchEnd(nums, target, index, start, mid - 1)
-        }
+        return index
     }
 
 }
