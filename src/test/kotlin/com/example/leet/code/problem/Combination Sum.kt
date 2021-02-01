@@ -29,19 +29,26 @@ class `Combination Sum` {
     }
 
 
-    private fun combinationSum(candidates: IntArray, target: Int, tmp: Int = 0, tmpArray: ArrayList<Int> = ArrayList(), result: ArrayList<List<Int>> = ArrayList()): List<List<Int>> {
+    private fun combinationSum(
+        candidates: IntArray,
+        target: Int,
+        startIndex: Int = 0,
+        tmp: Int = 0,
+        tmpArray: ArrayList<Int> = ArrayList(),
+        result: ArrayList<List<Int>> = ArrayList()
+    ): List<List<Int>> {
         if (tmp == target) {
-            result.add(tmpArray)
+            result.add(ArrayList(tmpArray))
         } else if (tmp > target) {
             return result
         }
 
 
-        for (i in candidates.indices) {
-            val newArray = ArrayList(tmpArray)
+        for (i in startIndex..candidates.lastIndex) {
             val element = candidates[i]
-            newArray.add(element)
-            combinationSum(candidates.sliceArray(i..candidates.lastIndex), target, tmp + element, newArray, result)
+            tmpArray.add(element)
+            combinationSum(candidates, target, i, tmp + element, tmpArray, result)
+            tmpArray.removeAt(tmpArray.lastIndex)
         }
 
         return result
