@@ -16,22 +16,24 @@ class `Combination Sum II` {
         Assertions.assertEquals(arrayListOf(arrayListOf(1, 2, 2), arrayListOf(5)), combinationSum2(intArrayOf(2, 5, 2, 1, 2), 5))
     }
 
+
+    private fun combinationSum2(candidates: IntArray, target: Int): List<List<Int>> {
+        candidates.sort()
+        return combinationSum2(candidates, target, 0, ArrayList(), LinkedHashSet()).toList()
+    }
+
     private fun combinationSum2(
         candidates: IntArray,
         target: Int,
-        startIndex: Int = 0,
-        tmpArray: ArrayList<Int> = ArrayList(),
-        result: HashSet<List<Int>> = LinkedHashSet()
-    ): List<List<Int>> {
+        startIndex: Int,
+        tmpArray: ArrayList<Int>,
+        result: HashSet<List<Int>>
+    ): HashSet<List<Int>> {
         if (target == 0) {
             result.add(ArrayList(tmpArray))
-            return result.toList()
+            return result
         } else if (target < 0) {
-            return result.toList()
-        }
-
-        if (tmpArray.isEmpty()) {
-            candidates.sort()
+            return result
         }
 
         for (i in startIndex..candidates.lastIndex) {
@@ -41,7 +43,8 @@ class `Combination Sum II` {
             tmpArray.removeAt(tmpArray.lastIndex)
         }
 
-        return result.toList()
+        return result
     }
+
 
 }
