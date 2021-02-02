@@ -32,20 +32,20 @@ class `Combination Sum` {
         candidates: IntArray,
         target: Int,
         startIndex: Int = 0,
-        tmp: Int = 0,
         tmpArray: ArrayList<Int> = ArrayList(),
         result: ArrayList<List<Int>> = ArrayList()
     ): List<List<Int>> {
-        if (tmp == target) {
+        if (0 == target) {
             result.add(ArrayList(tmpArray))
-        } else if (tmp > target) {
+            return result
+        } else if (target < 0) {
             return result
         }
 
         for (i in startIndex..candidates.lastIndex) {
             val element = candidates[i]
             tmpArray.add(element)
-            combinationSum(candidates, target, i, tmp + element, tmpArray, result)
+            combinationSum(candidates, target - element, i, tmpArray, result)
             tmpArray.removeAt(tmpArray.lastIndex)
         }
 
