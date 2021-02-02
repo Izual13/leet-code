@@ -20,24 +20,24 @@ class `Combination Sum II` {
         candidates: IntArray,
         target: Int,
         startIndex: Int = 0,
-        tmp: Int = 0,
         tmpArray: ArrayList<Int> = ArrayList(),
         result: HashSet<List<Int>> = LinkedHashSet()
     ): List<List<Int>> {
-        if (tmp == target) {
+        if (target == 0) {
             result.add(ArrayList(tmpArray))
-        } else if (tmp > target) {
+            return result.toList()
+        } else if (target < 0) {
             return result.toList()
         }
 
-        if (tmp == 0) {
+        if (tmpArray.isEmpty()) {
             candidates.sort()
         }
 
         for (i in startIndex..candidates.lastIndex) {
             val element = candidates[i]
             tmpArray.add(element)
-            combinationSum2(candidates, target, i + 1, tmp + element, tmpArray, result)
+            combinationSum2(candidates, target - element, i + 1, tmpArray, result)
             tmpArray.removeAt(tmpArray.lastIndex)
         }
 
