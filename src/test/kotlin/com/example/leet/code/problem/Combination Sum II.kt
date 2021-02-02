@@ -4,52 +4,44 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 @Suppress("ClassName")
-class `Combination Sum` {
-
+class `Combination Sum II` {
 
     @Test
     fun test1() {
-        Assertions.assertEquals(arrayListOf(arrayListOf(2, 2, 2, 2), arrayListOf(2, 3, 3), arrayListOf(3, 5)), combinationSum(intArrayOf(2, 3, 5), 8))
+        Assertions.assertEquals(arrayListOf(arrayListOf(1, 1, 6), arrayListOf(1, 2, 5), arrayListOf(1, 7), arrayListOf(2, 6)), combinationSum2(intArrayOf(10, 1, 2, 7, 6, 1, 5), 8))
     }
 
     @Test
     fun test2() {
-        Assertions.assertEquals(-1, combinationSum(intArrayOf(4, 5, 6, 7, 0, 1, 2), 3))
+        Assertions.assertEquals(arrayListOf(arrayListOf(1, 2, 2), arrayListOf(5)), combinationSum2(intArrayOf(2, 5, 2, 1, 2), 5))
     }
 
-    @Test
-    fun test3() {
-        Assertions.assertEquals(-1, combinationSum(intArrayOf(1), 0))
-    }
-
-    @Test
-    fun test4() {
-        Assertions.assertEquals(2, combinationSum(intArrayOf(5, 1, 3), 3))
-    }
-
-
-    private fun combinationSum(
+    private fun combinationSum2(
         candidates: IntArray,
         target: Int,
         startIndex: Int = 0,
         tmp: Int = 0,
         tmpArray: ArrayList<Int> = ArrayList(),
-        result: ArrayList<List<Int>> = ArrayList()
+        result: HashSet<List<Int>> = LinkedHashSet()
     ): List<List<Int>> {
         if (tmp == target) {
             result.add(ArrayList(tmpArray))
         } else if (tmp > target) {
-            return result
+            return result.toList()
+        }
+
+        if (tmp == 0) {
+            candidates.sort()
         }
 
         for (i in startIndex..candidates.lastIndex) {
             val element = candidates[i]
             tmpArray.add(element)
-            combinationSum(candidates, target, i, tmp + element, tmpArray, result)
+            combinationSum2(candidates, target, i + 1, tmp + element, tmpArray, result)
             tmpArray.removeAt(tmpArray.lastIndex)
         }
 
-        return result
+        return result.toList()
     }
 
 }
