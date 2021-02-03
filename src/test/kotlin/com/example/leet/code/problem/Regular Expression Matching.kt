@@ -58,37 +58,62 @@ class `Regular Expression Matching` {
         Assertions.assertEquals(true, isMatch("", "a*a*"))
     }
 
+    @Test
+    fun test11() {
+        Assertions.assertEquals(true, isMatch("mississippi", "mis*is*ip*."))
+    }
 
-    private fun isMatch(s: String, p: String): Boolean {
-        if (p.isBlank() && s.isBlank()) {
+    @Test
+    fun test12() {
+        Assertions.assertEquals(false, isMatch("ab", ".*c"))
+    }
+
+    @Test
+    fun test13() {
+        Assertions.assertEquals(true, isMatch("", ""))
+    }
+
+    @Test
+    fun test14() {
+        Assertions.assertEquals(false, isMatch("a", ""))
+    }
+
+    @Test
+    fun test15() {
+        Assertions.assertEquals(true, isMatch("aaa", "ab*a*c*a"))
+    }
+
+
+    private fun isMatch(s: String, p: String, sIndex: Int = 0, pIndex: Int = 0): Boolean {
+        if (p.lastIndex == pIndex - 1 && s.lastIndex == sIndex - 1) {
             return true
-        } else if (s.isNotBlank() && p.isBlank()) {
+        } else if (p.lastIndex == pIndex - 1 && s.lastIndex > sIndex - 1) {
             return false
-        } else if (s.isBlank() && p.length > 1 && p[1] == '*') {
-            return isMatch(s, p.substring(2))
-        } else if (s.isBlank() && p.isNotBlank()) {
+        } else if (s.lastIndex == sIndex - 1 && p.lastIndex > pIndex && p[pIndex + 1] == '*') {
+            return isMatch(s, p, sIndex, pIndex + 2)
+        } else if (s.lastIndex == sIndex - 1 && p.lastIndex > pIndex - 1) {
             return false
         }
 
         var result = true
 
-        val actual = s[0]
-        val expected = p[0]
+        val actual = s[sIndex]
+        val expected = p[pIndex]
 
-        if (p.length > 1 && p[1] == '*') {
+        if (p.lastIndex > pIndex && p[pIndex + 1] == '*') {
             var tmp = false
-            tmp = tmp || isMatch(s, p.substring(2))
+            tmp = tmp || isMatch(s, p, sIndex, pIndex + 2)
 
-            for (i in 1..s.length) {
+            for (i in sIndex + 1..s.length) {
                 if (s[i - 1] == expected || expected == '.') {
-                    tmp = tmp || isMatch(s.substring(i), p.substring(2))
+                    tmp = tmp || isMatch(s, p, i, pIndex + 2)
                 } else {
                     break
                 }
             }
             result = result && tmp
         } else if (actual == expected || expected == '.') {
-            result = result && isMatch(s.substring(1), p.substring(1))
+            result = result && isMatch(s, p, sIndex + 1, pIndex + 1)
         } else {
             result = false
         }
