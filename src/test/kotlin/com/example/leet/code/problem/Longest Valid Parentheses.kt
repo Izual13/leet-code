@@ -23,25 +23,22 @@ class `Longest Valid Parentheses` {
         Assertions.assertEquals(2, longestValidParentheses("()(()"))
     }
 
+    @Test
+    fun test4() {
+        Assertions.assertEquals(2, longestValidParentheses("()"))
+    }
+
     private fun longestValidParentheses(s: String): Int {
-        var start = 0
         var max = 0
-
-        for (i in start..s.lastIndex) {
-            val stack = LinkedList<Char>()
-            var tmp = 0
-            for (j in i..s.lastIndex) {
-                val parenthesis = s[j]
-                if (stack.isNotEmpty() && stack.peek() == '(' && parenthesis == ')') {
-                    tmp += 2
-                    stack.poll()
-                } else {
-                    stack.push(parenthesis)
-                }
-
-                if (stack.isEmpty()) {
-                    max = max(tmp, max)
-                }
+        val stack = LinkedList<Int>()
+        for (i in s.indices) {
+            val parenthesis = s[i]
+            if (stack.isNotEmpty() && s[stack.peek()] == '(' && parenthesis == ')') {
+                stack.poll()
+                val last = stack.peek() ?: -1
+                max = max(i - last, max)
+            } else {
+                stack.push(i)
             }
         }
 
