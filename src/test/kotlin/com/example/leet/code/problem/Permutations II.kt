@@ -43,6 +43,14 @@ class `Permutations II` {
         }
 
         for (i in startIndex until nums.size) {
+            if (nums[startIndex] == nums[i]) {
+                if (startIndex != i) {
+                    continue
+                }
+
+                permuteUnique(nums, startIndex + 1, result)
+                continue
+            }
             swap(nums, startIndex, i)
             permuteUnique(nums, startIndex + 1, result)
             swap(nums, startIndex, i)
