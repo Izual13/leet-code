@@ -20,10 +20,14 @@ class `Two Sum II - Input array is sorted` {
 
     private fun twoSum(numbers: IntArray, target: Int): IntArray {
 
-        for (i in 0 until numbers.lastIndex) {
-            val secondIndex = Arrays.binarySearch(numbers, i + 1, numbers.size, target - numbers[i])
-            if (secondIndex > 0) {
-                return intArrayOf(i + 1, secondIndex + 1)
+        for (i in numbers.lastIndex downTo 1) {
+            if (numbers[i] + numbers[0] > target) {
+                continue
+            }
+
+            val secondIndex = Arrays.binarySearch(numbers, 0, i + 1, target - numbers[i])
+            if (secondIndex >= 0) {
+                return intArrayOf(secondIndex + 1, i + 1)
             }
         }
         return intArrayOf(0, 0)
