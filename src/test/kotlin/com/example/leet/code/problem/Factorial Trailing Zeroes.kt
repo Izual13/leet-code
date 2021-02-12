@@ -34,18 +34,13 @@ class `Factorial Trailing Zeroes` {
 
 
     private fun trailingZeroes(n: Int): Int {
-        if (n == 0) {
-            return 0
-        }
+        var tmp = n
 
         var result = 0
 
-        for (i in 1..n) {
-            var tmp = i
-            while (tmp % 5 == 0) {
-                result++
-                tmp /= 5
-            }
+        while (tmp != 0) {
+            tmp /= 5
+            result += tmp
         }
 
         return result
