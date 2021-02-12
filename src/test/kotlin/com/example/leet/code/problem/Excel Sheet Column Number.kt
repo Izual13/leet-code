@@ -29,11 +29,8 @@ class `Excel Sheet Column Number` {
 
     private fun titleToNumber(s: String): Int {
         var result = 0
-        var lastIndex = s.lastIndex
         for (e in s) {
-            val index = e.toInt() - 64
-            val tmp = 26.toDouble().pow(lastIndex--) * index
-            result += tmp.toInt()
+            result = result * 26 + (e.toInt() - 64)
         }
         return result
     }
