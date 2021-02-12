@@ -2,7 +2,6 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import kotlin.math.pow
 
 @Suppress("ClassName")
 class `Excel Sheet Column Number` {
@@ -28,10 +27,6 @@ class `Excel Sheet Column Number` {
     }
 
     private fun titleToNumber(s: String): Int {
-        var result = 0
-        for (e in s) {
-            result = result * 26 + (e.toInt() - 64)
-        }
-        return result
+        return s.asSequence().map { it.toInt() - 64 }.reduce { acc, e -> acc * 26 + e }
     }
 }
