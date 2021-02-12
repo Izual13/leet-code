@@ -27,16 +27,12 @@ class `Excel Sheet Column Number` {
         Assertions.assertEquals(26, titleToNumber("Z"))
     }
 
-
-    val list = ('A'..'Z').toList()
-
     private fun titleToNumber(s: String): Int {
         var result = 0
-        val lastIndex = s.lastIndex
-        for (i in s.indices) {
-            val element = s[i]
-            val index = list.indexOf(element)
-            val tmp = 26.toDouble().pow(lastIndex - i) * (index + 1)
+        var lastIndex = s.lastIndex
+        for (e in s) {
+            val index = e.toInt() - 64
+            val tmp = 26.toDouble().pow(lastIndex--) * index
             result += tmp.toInt()
         }
         return result
