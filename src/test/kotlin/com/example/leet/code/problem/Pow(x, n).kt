@@ -2,9 +2,6 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.text.DecimalFormat
-
-
 
 
 @Suppress("ClassName")
@@ -47,25 +44,34 @@ class `Pow(x, n)` {
 
 
     private fun myPow(x: Double, n: Int): Double {
-        return when {
-            x == 0.0 || x == 1.0 -> x
-            n == 0 -> 1.0
-            n < 0 -> {
-                var result = x
-                for (i in -2 downTo n) {
-                    result *= x
-                }
-                return 1 / result
-            }
-            else -> {
-                var result = x
-                for (i in 1 until n) {
-                    result *= x
-                }
+        if (x == 0.0 || x == 1.0) {
+            return x
+        } else if (n == 0) {
+            return 1.0
+        }
 
-                return result
+        var m = x
+
+        var count: Long = n.toLong()
+
+        if (n < 0) {
+            count = -n.toLong()
+            m = 1 / x
+        }
+
+        var result = m
+        var tmp = 1L
+        while (tmp != count) {
+            if (tmp * 2 <= count) {
+                tmp *= 2
+                result *= result
+            } else {
+                tmp++
+                result *= m
             }
         }
+
+        return result
     }
 
 }
