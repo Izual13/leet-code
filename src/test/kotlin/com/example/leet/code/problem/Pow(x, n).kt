@@ -49,46 +49,26 @@ class `Pow(x, n)` {
 
 
     private fun myPow(x: Double, n: Int): Double {
-        if (x == 0.0 || x == 1.0) {
-            return x
-        } else if (n == 0) {
+        if (x == 1.0 || n == 0) {
             return 1.0
-        }
-
-        var m = x
-
-        var count: Long = n.toLong()
-
-        if (n < 0) {
-            count = -n.toLong()
-            m = 1 / x
+        } else if (x == -1.0) {
+            return if (n % 2 == 0) 1.0 else -1.0
+        } else if (n == Integer.MIN_VALUE) {
+            return 0.0;
+        } else if (n < 0) {
+            return myPow(1 / x, -n)
         }
 
         var result = 1.0
-        val cache = DoubleArray(32)
-        cache[0] = m
-        while (0L != count) {
-            for (i in 31 downTo 0) {
-                val shl = 1L.shl(i)
-                if (shl <= count) {
-                    var tmp = m
-                    if (cache[i] != 0.0) {
-                        tmp = cache[i]
-                    } else {
-                        for (j in 1..i) {
-                            tmp *= tmp
-                            cache[j] = tmp
-                        }
+        var count = n
+        var tmp = x
 
-                    }
-
-                    result *= tmp
-                    count -= shl
-                }
-                if (count == 0L) {
-                    return result
-                }
+        while (count > 0) {
+            if (count % 2 == 1) {
+                result *= tmp
             }
+            tmp *= tmp
+            count = count.shr(1)
         }
 
         return result
