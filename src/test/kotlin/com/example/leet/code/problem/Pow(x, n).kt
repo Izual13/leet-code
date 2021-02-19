@@ -59,15 +59,17 @@ class `Pow(x, n)` {
             m = 1 / x
         }
 
-        var result = m
-        var tmp = 1L
-        while (tmp != count) {
-            if (tmp * 2 <= count) {
-                tmp *= 2
-                result *= result
-            } else {
-                tmp++
-                result *= m
+        var result = 1.0
+        while (0L != count) {
+            for (i in 31 downTo 0) {
+                if (1L.shl(i) <= count) {
+                    var tmp = m
+                    for (j in 1..i) {
+                        tmp *= tmp
+                    }
+                    result *= tmp
+                    count -= 1L.shl(i)
+                }
             }
         }
 
