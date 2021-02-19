@@ -42,6 +42,11 @@ class `Pow(x, n)` {
         Assertions.assertEquals(0.0000254, myPow(34.00515, -3), 0.000001)
     }
 
+    @Test
+    fun test8() {
+        Assertions.assertEquals(64.0, myPow(2.0, 6))
+    }
+
 
     private fun myPow(x: Double, n: Int): Double {
         if (x == 0.0 || x == 1.0) {
@@ -60,15 +65,28 @@ class `Pow(x, n)` {
         }
 
         var result = 1.0
+        val cache = DoubleArray(32)
+        cache[0] = m
         while (0L != count) {
             for (i in 31 downTo 0) {
-                if (1L.shl(i) <= count) {
+                val shl = 1L.shl(i)
+                if (shl <= count) {
                     var tmp = m
-                    for (j in 1..i) {
-                        tmp *= tmp
+                    if (cache[i] != 0.0) {
+                        tmp = cache[i]
+                    } else {
+                        for (j in 1..i) {
+                            tmp *= tmp
+                            cache[j] = tmp
+                        }
+
                     }
+
                     result *= tmp
-                    count -= 1L.shl(i)
+                    count -= shl
+                }
+                if (count == 0L) {
+                    return result
                 }
             }
         }
