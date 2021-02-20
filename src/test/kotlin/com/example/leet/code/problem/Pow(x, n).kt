@@ -50,7 +50,7 @@ class `Pow(x, n)` {
 
     private fun myPow(x: Double, n: Int): Double {
         if (x == 1.0 || n == 0) {
-            return 1.0
+            return x
         } else if (x == -1.0) {
             return if (n % 2 == 0) 1.0 else -1.0
         } else if (n == Integer.MIN_VALUE) {
