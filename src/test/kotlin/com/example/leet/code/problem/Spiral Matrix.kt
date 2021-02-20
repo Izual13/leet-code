@@ -58,54 +58,28 @@ class `Spiral Matrix` {
     private fun spiralOrder(matrix: Array<IntArray>): List<Int> {
         val result = ArrayList<Int>()
 
-        val sizeX = matrix[0].size
-        val sizeY = matrix.size
+        var x1 = 0
+        var x2 = matrix[0].size - 1
 
+        var y1 = 0
+        var y2 = matrix.size - 1
 
-        if (sizeX == 1) {
-            for (i in matrix.indices) {
-                result.add(matrix[i][0])
+        while (x1 <= x2 && y1 <= y2) {
+            for (i in x1..x2) result.add(matrix[y1][i])
+            for (i in y1 + 1..y2) result.add(matrix[i][x2])
+
+            if (y1 == y2 || x1 == x2) {
+                return result
             }
-            return result
+
+            for (i in x2 - 1 downTo x1 + 1) result.add(matrix[y2][i])
+            for (i in y2 downTo y1 + 1) result.add(matrix[i][y1])
+
+            x1++
+            y1++
+            x2--
+            y2--
         }
-
-        for (i in 1..(sizeX / 2 + (sizeX % 2))) {
-            println("${i} round >>")
-            val realI = i - 1
-
-            if (realI >= sizeY - realI) {
-                continue
-            }
-
-            for (r in realI until sizeX - realI) {
-                result.add(matrix[realI][r])
-            }
-
-            println(result)
-
-            for (r in realI + 1 until sizeY - realI - 1) {
-                result.add(matrix[r][sizeX - realI - 1])
-            }
-
-            println(result)
-
-            if (realI == sizeY - realI - 1) {
-                continue
-            }
-
-            for (r in sizeX - realI - 1 downTo realI + 1) {
-                result.add(matrix[sizeY - realI - 1][r])
-            }
-
-            println(result)
-
-            for (r in sizeY - realI - 1 downTo realI + 1) {
-                result.add(matrix[r][realI])
-            }
-
-            println(result)
-        }
-
 
         return result
     }
