@@ -31,38 +31,75 @@ class `Spiral Matrix` {
 
     @Test
     fun test4() {
-        val matrix = arrayOf(intArrayOf(1, 2, 3, 4), intArrayOf(2, 4, 8, 10), intArrayOf(5, 6, 7, 8), intArrayOf(9, 10, 11, 12))
+        val matrix = arrayOf(intArrayOf(1, 2, 3, 4), intArrayOf(5, 6, 7, 8), intArrayOf(9, 10, 11, 12))
 
         Assertions.assertEquals(listOf(1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7), spiralOrder(matrix))
+    }
+
+    @Test
+    fun test5() {
+        val matrix = arrayOf(intArrayOf(1, 2, 3, 4))
+        Assertions.assertEquals(listOf(1, 2, 3, 4), spiralOrder(matrix))
+    }
+
+    @Test
+    fun test6() {
+        val matrix = arrayOf(intArrayOf(1, 2, 3, 4), intArrayOf(5, 6, 7, 8))
+        Assertions.assertEquals(listOf(1, 2, 3, 4, 8, 7, 6, 5), spiralOrder(matrix))
+    }
+
+    @Test
+    fun test7() {
+        val matrix = arrayOf(intArrayOf(1), intArrayOf(2), intArrayOf(3))
+        Assertions.assertEquals(listOf(1, 2, 3), spiralOrder(matrix))
     }
 
 
     private fun spiralOrder(matrix: Array<IntArray>): List<Int> {
         val result = ArrayList<Int>()
 
-        val size = matrix.size
-        for (i in 1..(size / 2 + (size % 2))) {
+        val sizeX = matrix[0].size
+        val sizeY = matrix.size
+
+
+        if (sizeX == 1) {
+            for (i in matrix.indices) {
+                result.add(matrix[i][0])
+            }
+            return result
+        }
+
+        for (i in 1..(sizeX / 2 + (sizeX % 2))) {
             println("${i} round >>")
             val realI = i - 1
-            for (r in realI until size - realI) {
+
+            if (realI >= sizeY - realI) {
+                continue
+            }
+
+            for (r in realI until sizeX - realI) {
                 result.add(matrix[realI][r])
             }
 
             println(result)
 
-            for (r in realI + 1 until size - realI - 1) {
-                result.add(matrix[r][size - realI - 1])
+            for (r in realI + 1 until sizeY - realI - 1) {
+                result.add(matrix[r][sizeX - realI - 1])
             }
 
             println(result)
 
-            for (r in size - realI - 1 downTo realI + 1) {
-                result.add(matrix[size - realI - 1][r])
+            if (realI == sizeY - realI - 1) {
+                continue
+            }
+
+            for (r in sizeX - realI - 1 downTo realI + 1) {
+                result.add(matrix[sizeY - realI - 1][r])
             }
 
             println(result)
 
-            for (r in size - realI - 1 downTo realI + 1) {
+            for (r in sizeY - realI - 1 downTo realI + 1) {
                 result.add(matrix[r][realI])
             }
 
