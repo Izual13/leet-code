@@ -47,10 +47,17 @@ class `Pow(x, n)` {
         Assertions.assertEquals(64.0, myPow(2.0, 6))
     }
 
+    @Test
+    fun test9() {
+        Assertions.assertEquals(1.0, myPow(2.0, 0))
+    }
+
 
     private fun myPow(x: Double, n: Int): Double {
-        if (x == 1.0 || n == 0) {
-            return x
+        if (x == 0.0 && n == 0) {
+            return 0.0
+        } else if (x == 1.0 || n == 0) {
+            return 1.0
         } else if (x == -1.0) {
             return if (n % 2 == 0) 1.0 else -1.0
         } else if (n == Integer.MIN_VALUE) {
