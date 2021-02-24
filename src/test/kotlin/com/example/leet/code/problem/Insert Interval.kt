@@ -50,39 +50,26 @@ class `Insert Interval` {
         }
 
         val result = ArrayList<IntArray>()
-        var isInsert = false
+        val size = intervals.size
 
-        for (i in 0..intervals.lastIndex) {
-            val interval = intervals[i]
+        var i = 0
 
-            if (!isInsert && newInterval[1] < interval[0]) {
-                result.add(intArrayOf(*newInterval))
-                isInsert = true
-            }
-
-            if (!isInsert && (newInterval[0] in interval[0]..interval[1] || newInterval[1] in interval[0]..interval[1]
-                        || interval[0] in newInterval[0]..newInterval[1] || interval[1] in newInterval[0]..newInterval[1])
-            ) {
-                interval[0] = min(newInterval[0], interval[0])
-                interval[1] = max(newInterval[1], interval[1])
-                isInsert = true
-            }
-
-            if (result.isNotEmpty()) {
-                val lastInterval = result.last()
-                if (interval[0] in lastInterval[0]..lastInterval[1] || interval[1] in lastInterval[0]..lastInterval[1]) {
-                    lastInterval[0] = min(interval[0], lastInterval[0])
-                    lastInterval[1] = max(interval[1], lastInterval[1])
-                } else {
-                    result.add(intArrayOf(*interval))
-                }
-            } else {
-                result.add(intArrayOf(*interval))
-            }
+        while (i < size && newInterval[0] > intervals[i][1]) {
+            result.add(intervals[i])
+            i++
         }
 
-        if (!isInsert) {
-            result.add(intArrayOf(*newInterval))
+
+        while (i < size && newInterval[1] >= intervals[i][0]) {
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
+            i++
+        }
+        result.add(newInterval)
+
+        while (i < size) {
+            result.add(intervals[i])
+            i++
         }
 
         return result.toTypedArray()
