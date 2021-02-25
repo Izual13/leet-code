@@ -89,7 +89,7 @@ class `Rotate List` {
             lastElement = lastElement?.next
         }
 
-        if(lastElement?.next==null){
+        if (lastElement?.next == null) {
             return head
         }
 
