@@ -90,22 +90,18 @@ class `Unique Paths II` {
             obstacleGrid[0][0] = 1
         }
 
-        var isReach = true
         for (i in 1 until m) {
-            if (isReach && obstacleGrid[i][0] == 0) {
+            if (obstacleGrid[i - 1][0] != 0 && obstacleGrid[i][0] == 0) {
                 obstacleGrid[i][0] = 1
             } else {
-                isReach = false
                 obstacleGrid[i][0] = 0
             }
         }
 
-        isReach = true
         for (j in 1 until n) {
-            if (isReach && obstacleGrid[0][j] == 0) {
+            if (obstacleGrid[0][j - 1] != 0 && obstacleGrid[0][j] == 0) {
                 obstacleGrid[0][j] = 1
             } else {
-                isReach = false
                 obstacleGrid[0][j] = 0
             }
         }
@@ -118,10 +114,6 @@ class `Unique Paths II` {
                     obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
                 }
             }
-        }
-
-        obstacleGrid.forEach {
-            println(it.contentToString())
         }
 
         return obstacleGrid[m - 1][n - 1]
