@@ -3,8 +3,6 @@ package com.example.leet.code.problem
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Timeout
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicInteger
 
 
 @Suppress("ClassName")
@@ -16,25 +14,21 @@ class `Unique Paths` {
     }
 
     @Test
-    @Timeout(value = 5, unit = TimeUnit.SECONDS)
+    @Timeout(5)
     fun test2() {
         Assertions.assertEquals(1916797311, uniquePaths(51, 9))
     }
 
 
-    private fun uniquePaths(m: Int, n: Int, i: Int = 0, j: Int = 0, count: AtomicInteger = AtomicInteger()): Int {
-        if (i == m - 1 && j == n - 1) {
-            count.incrementAndGet()
+    private fun uniquePaths(m: Int, n: Int): Int {
+        val result: Array<IntArray> = Array(m) { IntArray(n) { 1 } }
+
+        for (i in 1 until m) {
+            for (j in 1 until n) {
+                result[i][j] = result[i - 1][j] + result[i][j - 1]
+            }
         }
 
-        if (i != m - 1) {
-            uniquePaths(m, n, i + 1, j, count)
-        }
-
-        if (j != n - 1) {
-            uniquePaths(m, n, i, j + 1, count)
-        }
-
-        return count.get()
+        return result[m - 1][n - 1]
     }
 }
