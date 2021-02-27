@@ -19,6 +19,10 @@ class `Unique Paths` {
         Assertions.assertEquals(1916797311, uniquePaths(51, 9))
     }
 
+    @Test
+    fun test3() {
+        Assertions.assertEquals(6, uniquePaths(3, 3))
+    }
 
     private fun uniquePaths(m: Int, n: Int): Int {
         val result: Array<IntArray> = Array(m) { IntArray(n) { 1 } }

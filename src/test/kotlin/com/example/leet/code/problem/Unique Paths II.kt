@@ -2,7 +2,7 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.concurrent.atomic.AtomicInteger
+import org.junit.jupiter.api.Timeout
 
 
 @Suppress("ClassName")
@@ -23,29 +23,107 @@ class `Unique Paths II` {
         Assertions.assertEquals(0, uniquePathsWithObstacles(arrayOf(intArrayOf(1))))
     }
 
-//    @Test
-//    @Timeout(5)
-//    fun test2() {
-//        Assertions.assertEquals(1916797311, uniquePaths(51, 9))
-//    }
+    @Test
+    @Timeout(5)
+    fun test4() {
+        val obstacleGrid = arrayOf(
+            intArrayOf(0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0),
+            intArrayOf(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0),
+            intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1),
+            intArrayOf(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0),
+            intArrayOf(0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0),
+            intArrayOf(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1),
+            intArrayOf(0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0),
+            intArrayOf(1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1),
+            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0),
+            intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
+            intArrayOf(0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
+            intArrayOf(0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+            intArrayOf(0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+            intArrayOf(1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
+            intArrayOf(0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0),
+            intArrayOf(0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0),
+            intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        )
+        Assertions.assertEquals(718991952, uniquePathsWithObstacles(obstacleGrid))
+    }
 
-    private fun uniquePathsWithObstacles(obstacleGrid: Array<IntArray>, i: Int = 0, j: Int = 0, count: AtomicInteger = AtomicInteger()): Int {
+    @Test
+    fun test5() {
+        Assertions.assertEquals(3, uniquePathsWithObstacles(arrayOf(intArrayOf(0, 1, 0), intArrayOf(0, 0, 0), intArrayOf(0, 0, 0))))
+    }
 
-        if (obstacleGrid[i][j] == 1) {
-            return count.get()
+    @Test
+    fun test6() {
+        Assertions.assertEquals(3, uniquePathsWithObstacles(arrayOf(intArrayOf(0, 0, 0), intArrayOf(1, 0, 0), intArrayOf(0, 0, 0))))
+    }
+
+    @Test
+    fun test7() {
+        Assertions.assertEquals(0, uniquePathsWithObstacles(arrayOf(intArrayOf(1, 0, 0), intArrayOf(0, 0, 0), intArrayOf(0, 0, 0))))
+    }
+
+    @Test
+    fun test8() {
+        Assertions.assertEquals(0, uniquePathsWithObstacles(arrayOf(intArrayOf(0, 0), intArrayOf(1, 1), intArrayOf(0, 0))))
+    }
+
+
+    private fun uniquePathsWithObstacles(obstacleGrid: Array<IntArray>): Int {
+        val m = obstacleGrid.size
+        val n = obstacleGrid[0].size
+
+        if (obstacleGrid[0][0] == 1) {
+            return 0
+        } else {
+            obstacleGrid[0][0] = 1
         }
 
-        if (obstacleGrid.size - 1 == i && obstacleGrid[i].size - 1 == j) {
-            count.incrementAndGet()
-        }
-        if (obstacleGrid.size - 1 != i) {
-            uniquePathsWithObstacles(obstacleGrid, i + 1, j, count)
+        var isReach = true
+        for (i in 1 until m) {
+            if (isReach && obstacleGrid[i][0] == 0) {
+                obstacleGrid[i][0] = 1
+            } else {
+                isReach = false
+                obstacleGrid[i][0] = 0
+            }
         }
 
-        if (obstacleGrid[0].size - 1 != j) {
-            uniquePathsWithObstacles(obstacleGrid, i, j + 1, count)
+        isReach = true
+        for (j in 1 until n) {
+            if (isReach && obstacleGrid[0][j] == 0) {
+                obstacleGrid[0][j] = 1
+            } else {
+                isReach = false
+                obstacleGrid[0][j] = 0
+            }
         }
 
-        return count.get()
+        for (i in 1 until m) {
+            for (j in 1 until n) {
+                if (obstacleGrid[i][j] == 1) {
+                    obstacleGrid[i][j] = 0
+                } else {
+                    obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
+                }
+            }
+        }
+
+        obstacleGrid.forEach {
+            println(it.contentToString())
+        }
+
+        return obstacleGrid[m - 1][n - 1]
     }
 }
