@@ -49,18 +49,10 @@ class `Duplicate Zeros` {
                 if (i + count < size) {
                     arr[i + count] = arr[i]
                 }
-                continue
-            }
-
-            if (i + count < size) {
+            } else if (i + count < size) {
                 arr[i + count] = arr[i]
             }
 
-
-            println(arr.contentToString())
-
         }
-
-        println(arr.contentToString())
     }
 }
