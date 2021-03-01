@@ -27,16 +27,10 @@ class `Check If N and Its Double Exist` {
     private fun checkIfExist(arr: IntArray): Boolean {
         val set = HashSet<Int>()
         for (i in arr) {
-            if (i.and(1) == 0) {
-                if (!set.add(i) && i == 0) {
-                    return true
-                }
-            }
-        }
-
-        for (i in arr) {
-            if (set.contains(i * 2) && i != 0) {
+            if ((i.and(1) == 0 && set.contains(i / 2)) || set.contains(i * 2)) {
                 return true
+            } else {
+                set.add(i)
             }
         }
 
