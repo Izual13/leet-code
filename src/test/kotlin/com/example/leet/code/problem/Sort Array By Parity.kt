@@ -18,7 +18,7 @@ class `Sort Array By Parity` {
         while (start != end) {
             val i = A[start]
             if (i.and(1) == 0) {
-                A[start++] = i
+                start++
             } else {
                 A[start] = A[end]
                 A[end--] = i
