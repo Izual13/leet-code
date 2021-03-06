@@ -14,29 +14,20 @@ class `Find All Numbers Disappeared in an Array` {
 
 
     private fun findDisappearedNumbers(nums: IntArray): List<Int> {
-        if(nums.isEmpty()){
+        if (nums.isEmpty()) {
             return emptyList()
         }
 
-        var findZero = false
-
         for (i in nums.indices) {
             val num = abs(nums[i]) - 1
-            if (nums[num] >= 0) {
+            if (nums[num] > 0) {
                 nums[num] = -nums[num]
-                if (num == 0) {
-                    findZero = true
-                }
             }
         }
 
         val result = ArrayList<Int>()
 
-        if (!findZero) {
-            result.add(1)
-        }
-
-        for (i in 1..nums.lastIndex) {
+        for (i in nums.indices) {
             if (nums[i] > 0) {
                 result.add(i + 1)
             }
