@@ -48,7 +48,6 @@ class `Duplicate Zeros` {
     fun test6() {
         val arr = intArrayOf(0, 1, 7, 6, 0, 2, 0, 7)
         duplicateZeros(arr)
-        println(arr.contentToString())
         Assertions.assertArrayEquals(intArrayOf(0, 0, 1, 7, 6, 0, 0, 2), arr)
     }
 
@@ -56,7 +55,6 @@ class `Duplicate Zeros` {
     fun test7() {
         val arr = intArrayOf(8, 4, 5, 0, 0, 0, 0, 7)
         duplicateZeros(arr)
-        println(arr.contentToString())
         Assertions.assertArrayEquals(intArrayOf(8, 4, 5, 0, 0, 0, 0, 0), arr)
     }
 
