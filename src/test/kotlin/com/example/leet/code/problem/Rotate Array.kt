@@ -39,4 +39,17 @@ class `Rotate Array` {
         nums.reverse(0, n)
         nums.reverse(n, nums.lastIndex + 1)
     }
+
+    //for old kotlin
+/*    private fun IntArray.reverse(fromIndex: Int = 0, toIndex: Int = size): Unit {
+        val midPoint = (fromIndex + toIndex) / 2
+        if (fromIndex == midPoint) return
+        var reverseIndex = toIndex - 1
+        for (index in fromIndex until midPoint) {
+            val tmp = this[index]
+            this[index] = this[reverseIndex]
+            this[reverseIndex] = tmp
+            reverseIndex--
+        }
+    }*/
 }
