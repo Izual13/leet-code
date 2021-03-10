@@ -32,7 +32,7 @@ class `Reverse Linked List` {
         Assertions.assertEquals(3, newRoot.next!!.next!!.`val`)
         Assertions.assertEquals(2, newRoot.next!!.next!!.next!!.`val`)
         Assertions.assertEquals(1, newRoot.next!!.next!!.next!!.next!!.`val`)
-        Assertions.assertNull(newRoot.next!!.next!!.next!!.next!!)
+        Assertions.assertNull(newRoot.next!!.next!!.next!!.next!!.next)
     }
 
 

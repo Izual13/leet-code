@@ -28,7 +28,7 @@ class `Delete Node in a Linked List` {
         Assertions.assertEquals(4, root.`val`)
         Assertions.assertEquals(1, root.next!!.`val`)
         Assertions.assertEquals(9, root.next!!.next!!.`val`)
-        Assertions.assertNull(root.next!!.next!!.next!!.`val`)
+        Assertions.assertNull(root.next!!.next!!.next)
     }
 
 
