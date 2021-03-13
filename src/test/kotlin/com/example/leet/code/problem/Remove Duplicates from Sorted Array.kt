@@ -8,12 +8,12 @@ class `Remove Duplicates from Sorted Array` {
     @Test
     fun test1() {
         val nums = intArrayOf(0, 0, 1, 1, 1, 2, 2, 3, 3, 4)
-        Assertions.assertEquals(removeDuplicates(nums), 5)
-        Assertions.assertEquals(nums[0], 0)
-        Assertions.assertEquals(nums[1], 1)
-        Assertions.assertEquals(nums[2], 2)
-        Assertions.assertEquals(nums[3], 3)
-        Assertions.assertEquals(nums[4], 4)
+        Assertions.assertEquals(5, removeDuplicates(nums))
+        Assertions.assertEquals(0, nums[0])
+        Assertions.assertEquals(1, nums[1])
+        Assertions.assertEquals(2, nums[2])
+        Assertions.assertEquals(3, nums[3])
+        Assertions.assertEquals(4, nums[4])
     }
 
 

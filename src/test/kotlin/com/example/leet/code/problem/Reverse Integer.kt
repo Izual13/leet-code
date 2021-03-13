@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test
 class `Reverse Integer` {
     @Test
     fun test1() {
-        Assertions.assertEquals(reverse(-123), -321)
+        Assertions.assertEquals(-321, reverse(-123))
     }
 
     @Test
     fun test2() {
-        Assertions.assertEquals(reverse(1534236469), 0)
+        Assertions.assertEquals(0, reverse(1534236469))
     }
 
     private fun reverse(x: Int): Int {

@@ -8,12 +8,12 @@ import java.lang.StringBuilder
 class `Integer to Roman` {
     @Test
     fun test1() {
-        Assertions.assertEquals(intToRoman(58), "LVIII")
+        Assertions.assertEquals("LVIII", intToRoman(58))
     }
 
     @Test
     fun test2() {
-        Assertions.assertEquals(intToRoman(1994), "MCMXCIV")
+        Assertions.assertEquals("MCMXCIV", intToRoman(1994))
     }
 
     val roman: Map<Int, String> = linkedMapOf(

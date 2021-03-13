@@ -8,12 +8,12 @@ class `Count and Say` {
 
     @Test
     fun test1() {
-        Assertions.assertEquals(countAndSay(4), "1211")
+        Assertions.assertEquals("1211", countAndSay(4))
     }
 
     @Test
     fun test2() {
-        Assertions.assertEquals(countAndSay(6), "312211")
+        Assertions.assertEquals("312211", countAndSay(6))
     }
 
 
