@@ -9,47 +9,29 @@ class `Valid Parentheses` {
 
     @Test
     fun test1() {
-        Assertions.assertEquals(isValid("()[]{}"), true)
+        Assertions.assertEquals(true, isValid("()[]{}"))
     }
 
     @Test
     fun test2() {
-        Assertions.assertEquals(isValid("(}"), false)
+        Assertions.assertEquals(false, isValid("(}"))
     }
 
     @Test
     fun test3() {
-        Assertions.assertEquals(isValid("]"), false)
+        Assertions.assertEquals(false, isValid("]"))
     }
 
     private fun isValid(s: String): Boolean {
         val parentheses = ArrayDeque<Char>()
         for (it in s.toCharArray()) {
             when (it) {
-                '{' -> {
-                    parentheses.push(it)
-                }
-                '[' -> {
-                    parentheses.push(it)
-                }
-                '(' -> {
-                    parentheses.push(it)
-                }
-                '}' -> {
-                    if (!rm(parentheses, '{')) {
-                        return false
-                    }
-                }
-                ']' -> {
-                    if (!rm(parentheses, '[')) {
-                        return false
-                    }
-                }
-                ')' -> {
-                    if (!rm(parentheses, '(')) {
-                        return false
-                    }
-                }
+                '{' -> parentheses.push(it)
+                '[' -> parentheses.push(it)
+                '(' -> parentheses.push(it)
+                '}' -> if (!rm(parentheses, '{')) return false
+                ']' -> if (!rm(parentheses, '[')) return false
+                ')' -> if (!rm(parentheses, '(')) return false
             }
         }
 
