@@ -25,6 +25,11 @@ class `Count Primes` {
         Assertions.assertEquals(8, countPrimes(20))
     }
 
+    @Test
+    fun test5() {
+        Assertions.assertEquals(0, countPrimes(2))
+    }
+
     private fun countPrimes(n: Int): Int {
         if (n <= 1) {
             return 0
