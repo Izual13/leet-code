@@ -58,11 +58,7 @@ class `Odd Even Linked List` {
 
     private fun oddEvenList(head: ListNode?): ListNode? {
 
-        val evenHead = head?.next
-
-        if (evenHead == null) {
-            return head
-        }
+        val evenHead = head?.next ?: return head
 
         var odd = head
         var even = head.next
