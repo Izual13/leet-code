@@ -64,7 +64,7 @@ class `Reverse Nodes in k-Group` {
 
 
         while (cur != null) {
-            val startGroup: ListNode? = cur
+            val startGroup: ListNode = cur
             for (i in 0 until k) {
                 if (cur == null) {
                     return root.next
@@ -74,7 +74,7 @@ class `Reverse Nodes in k-Group` {
 
             val lastNode = reverseGroup(startGroup, k)
             prev!!.next = lastNode
-            startGroup!!.next = cur
+            startGroup.next = cur
             prev = startGroup
 
         }

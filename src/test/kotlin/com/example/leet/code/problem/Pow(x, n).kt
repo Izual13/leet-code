@@ -61,7 +61,7 @@ class `Pow(x, n)` {
         } else if (x == -1.0) {
             return if (n % 2 == 0) 1.0 else -1.0
         } else if (n == Integer.MIN_VALUE) {
-            return 0.0;
+            return 0.0
         } else if (n < 0) {
             return myPow(1 / x, -n)
         }

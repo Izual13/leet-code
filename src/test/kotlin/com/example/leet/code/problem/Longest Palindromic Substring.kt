@@ -8,20 +8,20 @@ class `Longest Palindromic Substring` {
 
     @Test
     fun test1() {
-        Assertions.assertEquals(longestPalindrome("babad"), "bab")
+        Assertions.assertEquals("bab", longestPalindrome("babad"))
     }
 
     @Test
     fun test2() {
-        Assertions.assertEquals(longestPalindrome("cbbd"), "bb")
+        Assertions.assertEquals("bb", longestPalindrome("cbbd"))
     }
 
-    fun longestPalindrome(s: String): String {
+    private fun longestPalindrome(s: String): String {
         var longStr = ""
 
         for (i in s.indices) {
-            val oddStr = longestPalindrome(s, i, i);
-            val evenStr = longestPalindrome(s, i, i + 1);
+            val oddStr = longestPalindrome(s, i, i)
+            val evenStr = longestPalindrome(s, i, i + 1)
 
             if (oddStr.length > longStr.length) {
                 longStr = oddStr
@@ -31,15 +31,15 @@ class `Longest Palindromic Substring` {
             }
         }
 
-        return longStr;
+        return longStr
     }
 
     private fun longestPalindrome(s: String, left: Int, right: Int): String {
         var l = left
         var r = right
         while (l >= 0 && r < s.length && s[l] == s[r]) {
-            l--;
-            r++;
+            l--
+            r++
         }
 
         return s.substring(l + 1, r)
