@@ -13,18 +13,25 @@ class `Word Search` {
         Assertions.assertEquals(true, exist(board, "ABCCED"))
     }
 
+    @Test
+    fun test2() {
+        val board = arrayOf(charArrayOf('A', 'B', 'C', 'E'), charArrayOf('S', 'F', 'C', 'S'), charArrayOf('A', 'D', 'E', 'E'))
+        Assertions.assertEquals(false, exist(board, "ABCB"))
+    }
+
+    @Test
+    fun test3() {
+        val board = arrayOf(charArrayOf('A', 'B', 'C', 'E'), charArrayOf('S', 'F', 'C', 'S'), charArrayOf('A', 'D', 'E', 'E'))
+        Assertions.assertEquals(true, exist(board, "SEE"))
+    }
+
 
     private fun exist(board: Array<CharArray>, word: String): Boolean {
         val path = Array(board.size) { BooleanArray(board[0].size) }
         for (i in board.indices) {
             for (j in board[i].indices) {
-                if (board[i][j] == word[0]) {
-
-                    path[i][j] = true
-                    if (exist(board, word, 1, i, j, path)) {
-                        return true
-                    }
-                    path[i][j] = false
+                if (exist(board, word, 0, i, j, path)) {
+                    return true
                 }
             }
         }
@@ -33,53 +40,25 @@ class `Word Search` {
     }
 
     private fun exist(board: Array<CharArray>, word: String, start: Int, i: Int, j: Int, path: Array<BooleanArray>): Boolean {
-        println("${start}")
-        for (pp in path) {
-            println(pp.contentToString())
-        }
-
         if (start == word.length) {
             return true
         } else if (start > word.length) {
             return false
+        } else if (i !in board.indices || j !in board[0].indices || path[i][j]) {
+            return false
+        } else if (board[i][j] != word[start]) {
+            return false
         }
 
-        //up
-        if (i - 1 in board.indices && j in board[0].indices && !path[i - 1][j] && word[start] == board[i - 1][j]) {
-            path[i - 1][j] = true
-            if (exist(board, word, start + 1, i - 1, j, path)) {
-                return true
-            }
-            path[i - 1][j] = false
-        }
+        path[i][j] = true
 
-        //down
-        if (i + 1 in board.indices && j in board[0].indices && !path[i + 1][j] && word[start] == board[i + 1][j]) {
-            path[i + 1][j] = true
-            if (exist(board, word, start + 1, i + 1, j, path)) {
-                return true
-            }
-            path[i + 1][j] = false
-        }
+        val result = exist(board, word, start + 1, i - 1, j, path) ||
+                exist(board, word, start + 1, i + 1, j, path) ||
+                exist(board, word, start + 1, i, j - 1, path) ||
+                exist(board, word, start + 1, i, j + 1, path)
 
-        //left
-        if (i in board.indices && j - 1 in board[0].indices && !path[i][j - 1] && word[start] == board[i][j - 1]) {
-            path[i][j - 1] = true
-            if (exist(board, word, start + 1, i, j - 1, path)) {
-                return true
-            }
-            path[i][j - 1] = false
-        }
+        path[i][j] = false
 
-        //right
-        if (i in board.indices && j + 1 in board[0].indices && !path[i][j + 1] && word[start] == board[i][j + 1]) {
-            path[i][j + 1] = true
-            if (exist(board, word, start + 1, i, j + 1, path)) {
-                return true
-            }
-            path[i][j + 1] = false
-        }
-
-        return false
+        return result
     }
 }
