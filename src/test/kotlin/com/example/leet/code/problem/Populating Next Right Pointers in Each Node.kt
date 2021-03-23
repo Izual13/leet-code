@@ -54,8 +54,7 @@ class `Populating Next Right Pointers in Each Node` {
         while (list.isNotEmpty()) {
             val lastIndex = list.lastIndex
             for (i in 0..lastIndex) {
-                val last = list.poll()
-                println(last!!.`val`)
+                val last = list.poll()!!
                 if (i <= lastIndex - 1) {
                     last.next = list.first
                 }
