@@ -1,4 +1,4 @@
-package com.example.leet.code.problem
+package com.example.leet.code.problem.list
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
