@@ -14,7 +14,7 @@ class `Find Peak Element` {
 
     @Test
     fun test2() {
-        Assertions.assertEquals(1, findPeakElement(intArrayOf(1, 2, 1, 3, 5, 6, 4)))
+        Assertions.assertEquals(5, findPeakElement(intArrayOf(1, 2, 1, 3, 5, 6, 7)))
     }
 
     @Test
@@ -28,22 +28,16 @@ class `Find Peak Element` {
     }
 
     private fun findPeakElement(nums: IntArray): Int {
-        if (nums.size < 2) {
-            return nums.lastIndex
-        }
-
-        for (i in 1 until nums.lastIndex) {
-            if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {
-                return i
+        var l = 0
+        var r = nums.lastIndex
+        while (l < r) {
+            val mid = (l + r) / 2
+            if (nums[mid] > nums[mid + 1]) {
+                r = mid
+            } else {
+                l = mid + 1
             }
         }
-
-        var maxIndex = 0
-        for (i in 1..nums.lastIndex) {
-            if (nums[i] > nums[maxIndex]) {
-                maxIndex = i
-            }
-        }
-        return maxIndex
+        return l
     }
 }
