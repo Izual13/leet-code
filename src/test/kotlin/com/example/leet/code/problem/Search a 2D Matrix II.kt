@@ -2,8 +2,6 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.*
-import kotlin.math.min
 
 
 @Suppress("ClassName")
@@ -29,33 +27,16 @@ class `Search a 2D Matrix II` {
 
 
     private fun searchMatrix(matrix: Array<IntArray>, target: Int): Boolean {
-        val possibleTarget = Arrays.binarySearch(matrix[0], target)
-        if (possibleTarget >= 0) {
-            return true
-        }
-        //search in columns
-        val maxColumn = min(-possibleTarget - 1, matrix[0].lastIndex)
-        var start = 0
-        var end = matrix.lastIndex
-        var currentColumn = 0
+        var row = 0
+        var col = matrix[0].lastIndex;
 
-        while (start <= end || maxColumn != currentColumn) {
-            if (start > end) {
-                start = 0
-                end = matrix.lastIndex
-                currentColumn++
-                continue
-            }
-            val mid = (start + end) / 2
-            if (matrix[mid][currentColumn] == target) {
-                return true
-            } else if (matrix[mid][currentColumn] > target) {
-                end = mid - 1
-            } else {
-                start = mid + 1
+        while (row <= matrix.lastIndex && col >= 0) {
+            when {
+                matrix[row][col] == target -> return true
+                matrix[row][col] > target -> col--
+                else -> row++
             }
         }
-
 
         return false
     }
