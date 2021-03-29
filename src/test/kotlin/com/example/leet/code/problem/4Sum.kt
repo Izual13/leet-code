@@ -16,7 +16,7 @@ class `4Sum` {
         Assertions.assertEquals(arrayListOf(arrayListOf(-3,-1,2,4)), fourSum(intArrayOf(-3, -1, 0, 2, 4, 5), 2))
     }
 
-    fun fourSum(nums: IntArray, target: Int): List<List<Int>> {
+    private fun fourSum(nums: IntArray, target: Int): List<List<Int>> {
         val result = mutableSetOf<List<Int>>()
         nums.sort()
 
