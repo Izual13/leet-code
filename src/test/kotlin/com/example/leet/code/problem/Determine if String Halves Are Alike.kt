@@ -22,15 +22,17 @@ class `Determine if String Halves Are Alike` {
         Assertions.assertEquals(false, halvesAreAlike("MerryChristmas"))
     }
 
-    val set = HashSet<Char>(listOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'))
+    val set = setOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
 
     private fun halvesAreAlike(s: String): Boolean {
+        val array = s.toCharArray()
+        val lastIndex = s.lastIndex
         val mid = s.length / 2
         var result = 0
 
         for (i in 0 until mid) {
-            if (set.contains(s[i])) result++
-            if (set.contains(s[s.lastIndex - i])) result--
+            if (set.contains(array[i])) result++
+            if (set.contains(array[lastIndex - i])) result--
         }
 
         return result == 0
