@@ -14,7 +14,7 @@ class `Find Peak Element` {
 
     @Test
     fun test2() {
-        Assertions.assertEquals(5, findPeakElement(intArrayOf(1, 2, 1, 3, 5, 6, 7)))
+        Assertions.assertEquals(6, findPeakElement(intArrayOf(1, 2, 1, 3, 5, 6, 7)))
     }
 
     @Test
