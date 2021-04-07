@@ -26,9 +26,20 @@ class `Determine if String Halves Are Alike` {
 
     private fun halvesAreAlike(s: String): Boolean {
         val mid = s.length / 2
+        var a = 0
+        var b = 0
 
-        val a = (0 until mid).map { s[it] }.filter(set::contains).count()
-        val b = (mid until s.length).map { s[it] }.filter(set::contains).count()
+        for (i in 0 until mid){
+            if(set.contains(s[i])){
+                a++
+            }
+        }
+
+        for (i in mid until s.length){
+            if(set.contains(s[i])){
+                b++
+            }
+        }
 
         return a == b
     }
