@@ -9,7 +9,7 @@ class `Palindrome Number` {
 
     @Test
     fun test1() {
-        Assertions.assertEquals(isPalindrome(121), true)
+        Assertions.assertEquals(true, isPalindrome(121))
     }
 
 
