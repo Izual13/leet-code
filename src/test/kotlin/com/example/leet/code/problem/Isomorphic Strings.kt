@@ -9,11 +9,6 @@ class `Isomorphic Strings` {
 
     @Test
     fun test1() {
-        println('0'.toInt())
-        println('9'.toInt())
-        println('z'.toInt())
-        println('0'.toInt() - ('0'.toInt() - 1))
-
         Assertions.assertEquals(true, isIsomorphic("paper", "title"))
     }
 
