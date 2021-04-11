@@ -17,10 +17,6 @@ class `Longest Increasing Path in a Matrix` {
     fun test2() {
         Assertions.assertEquals(1, longestIncreasingPath(arrayOf(intArrayOf(1))))
     }
-
-    //[[7,8,9],
-    // [9,7,6],
-    // [7,2,3]]
     @Test
     fun test3() {
         Assertions.assertEquals(6, longestIncreasingPath(arrayOf(intArrayOf(7, 8, 9), intArrayOf(9, 7, 6), intArrayOf(7, 2, 3))))
