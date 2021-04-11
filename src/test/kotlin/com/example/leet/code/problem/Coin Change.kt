@@ -2,7 +2,6 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.min
 
 @Suppress("ClassName")
@@ -30,22 +29,22 @@ class `Coin Change` {
 
     @Test
     fun test5() {
-        Assertions.assertEquals(2, coinChange(intArrayOf(1, 2, 3), 100))
+        Assertions.assertEquals(34, coinChange(intArrayOf(1, 2, 3), 100))
     }
 
-    private fun coinChange(coins: IntArray, amount: Int, tmp: Int = 0, count: Int = 0, result: AtomicInteger = AtomicInteger(Int.MAX_VALUE)): Int {
-        if (tmp == amount) {
-            val tmpResult = result.get()
-            result.set(min(tmpResult, count))
-            return result.get()
-        } else if (tmp > amount || tmp < 0) {
-            return -1
+    private fun coinChange(coins: IntArray, amount: Int): Int {
+
+        val cache = IntArray(amount + 1) { amount + 1 }
+        cache[0] = 0
+
+        for (i in 1..amount) {
+            for (coin in coins) {
+                if (coin <= i) {
+                    cache[i] = min(cache[i], 1 + cache[i - coin])
+                }
+            }
         }
 
-        for (i in coins) {
-            coinChange(coins, amount, tmp + i, count + 1, result)
-        }
-
-        return if (result.get() == Int.MAX_VALUE) -1 else result.get()
+        return if (cache[amount] == amount + 1) -1 else cache[amount]
     }
 }
