@@ -2,7 +2,6 @@ package com.example.leet.code.problem
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import kotlin.math.min
 
 @Suppress("ClassName")
 class `Contains Duplicate II` {
@@ -21,27 +20,15 @@ class `Contains Duplicate II` {
 
 
     private fun containsNearbyDuplicate(nums: IntArray, k: Int): Boolean {
-        val list = HashSet<Int>()
-        val map = HashMap<Int, IntArray>()
+        val map = HashMap<Int, Int>()
 
         for (i in nums.indices) {
             val num = nums[i]
-            if (map.containsKey(num)) {
-                list.add(num)
-                val ints = map[num]
-                if (ints!!.size == 1) {
-                    map[num] = intArrayOf(i, i - ints[0])
-                } else {
-                    map[num] = intArrayOf(i, min(i - ints[0], ints[1]))
-                }
-            } else {
-                map[num] = intArrayOf(i)
-            }
-        }
-
-        for (i in list) {
-            if (map[i]!![1] <= k) {
+            val v = map[num]
+            if (v != null && i - v <= k) {
                 return true
+            } else {
+                map[num] = i
             }
         }
 
