@@ -19,18 +19,15 @@ class `Remove All Adjacent Duplicates in String II` {
 
         for (i in s) {
             val first = q.peek()
-            if (first != null) {
-                if (first.first == i) {
-                    if (first.second.incrementAndGet() == k) {
-                        q.pop()
-                    }
-                } else {
-                    q.push(i to AtomicInteger(1))
+            if (first != null && first.first == i) {
+                if (first.second.incrementAndGet() == k) {
+                    q.pop()
                 }
             } else {
                 q.push(i to AtomicInteger(1))
             }
         }
+
 
         val result = StringBuilder()
         while (q.isNotEmpty()) {
