@@ -14,29 +14,15 @@ class Triangle {
     }
 
     private fun minimumTotal(triangle: List<List<Int>>): Int? {
+        val cache = ArrayList(triangle[triangle.size - 1])
 
-        if (triangle.size == 1) {
-            return triangle[0][0]
-        }
-
-        var cache1 = IntArray(triangle.size)
-        cache1[0] = triangle[0][0]
-
-        for (i in 1..triangle.lastIndex) {
-            val cache2 = IntArray(triangle.size)
+        for (i in triangle.lastIndex - 1 downTo 0) {
             for (j in triangle[i].indices) {
-                if (j == 0) {
-                    cache2[j] = triangle[i][j] + cache1[j]
-                } else if (j == triangle[i].lastIndex) {
-                    cache2[j] = triangle[i][j] + cache1[j - 1]
-                } else {
-                    cache2[j] = min(triangle[i][j] + cache1[j], triangle[i][j] + cache1[j - 1])
-                }
+                cache[j] = min(cache[j] + triangle[i][j], cache[j + 1] + triangle[i][j])
             }
-            cache1 = cache2
         }
 
-        return cache1.minOrNull()
+        return cache[0]
     }
 
 }
