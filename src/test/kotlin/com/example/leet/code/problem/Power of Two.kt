@@ -37,8 +37,18 @@ class `Power of Two` {
         Assertions.assertEquals(false, isPowerOfTwo(5))
     }
 
+    @Test
+    fun test7() {
+        Assertions.assertEquals(false, isPowerOfTwo(0))
+    }
+
+    @Test
+    fun test8() {
+        Assertions.assertEquals(false, isPowerOfTwo(-2))
+    }
+
 
     private fun isPowerOfTwo(n: Int): Boolean {
-        return n.and(n - 1) == 0
+        return n > 0 && n.and(n - 1) == 0
     }
 }
