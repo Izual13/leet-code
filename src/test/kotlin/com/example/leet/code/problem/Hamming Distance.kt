@@ -3,7 +3,6 @@ package com.example.leet.code.problem
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-
 @Suppress("ClassName")
 class `Hamming Distance` {
 
@@ -18,8 +17,6 @@ class `Hamming Distance` {
         var count = 0
 
         while (n1 != 0 || n2 != 0) {
-            println(n1.toString(2))
-            println(n2.toString(2))
             if (n1.and(1).xor(n2.and(1)) == 1) {
                 count++
             }
