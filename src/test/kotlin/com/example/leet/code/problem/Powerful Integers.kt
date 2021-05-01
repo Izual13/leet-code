@@ -17,36 +17,28 @@ class `Powerful Integers` {
         Assertions.assertEquals(arrayListOf(2, 4, 6, 8, 10, 14), powerfulIntegers(3, 5, 15))
     }
 
+    @Test
+    fun test3() {
+        Assertions.assertEquals(arrayListOf(2), powerfulIntegers(1, 1, 15))
+    }
+
 
     private fun powerfulIntegers(x: Int, y: Int, bound: Int): List<Int> {
-        val cacheX = ArrayList<Int>(arrayListOf(1, x))
-        val cacheY = ArrayList<Int>(arrayListOf(1, y))
         val result = HashSet<Int>()
-        for (i in 0..bound) {
+        var i = 1
+        while (i <= bound) {
 
-            if (cacheX.lastIndex < i) {
-                cacheX.add(cacheX[cacheX.lastIndex] * x)
-            }
+            var j = 1
+            while (i + j <= bound) {
+                result.add(i + j)
 
-            if (cacheX[i] + 1 > bound) {
-                break
-            }
-
-            for (j in 0..bound) {
-                if (cacheY.lastIndex < j) {
-                    cacheY.add(cacheY[cacheY.lastIndex] * y)
-                }
-
-                if (cacheX[i] + cacheY[j] > bound) {
-                    break
-                } else {
-                    result.add(cacheY[j] + cacheX[i])
-                }
+                j *= y
 
                 if (y == 1) {
                     break;
                 }
             }
+            i *= x
 
             if (x == 1) {
                 break;
