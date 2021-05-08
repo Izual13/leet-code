@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 class `Check If a Word Occurs As a Prefix of Any Word in a Sentence` {
     @Test
     fun test1() {
-        Assertions.assertEquals(isPrefixOfWord("i love eating burger", "burg"), 4)
+        Assertions.assertEquals(4, isPrefixOfWord("i love eating burger", "burg"))
     }
 
     private fun isPrefixOfWord(sentence: String, searchWord: String): Int {
