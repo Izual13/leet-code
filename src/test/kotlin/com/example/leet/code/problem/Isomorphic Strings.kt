@@ -23,10 +23,10 @@ class `Isomorphic Strings` {
         for (i in s.indices) {
             val a = s[i]
             val b = t[i]
-            if (sArray[a.toInt()] == 0 && tArray[b.toInt()] == 0) {
-                sArray[a.toInt()] = b.toInt()
-                tArray[b.toInt()] = a.toInt()
-            } else if (sArray[a.toInt()] != b.toInt() || tArray[b.toInt()] != a.toInt()) {
+            if (sArray[a.code] == 0 && tArray[b.code] == 0) {
+                sArray[a.code] = b.code
+                tArray[b.code] = a.code
+            } else if (sArray[a.code] != b.code || tArray[b.code] != a.code) {
                 return false
             }
         }

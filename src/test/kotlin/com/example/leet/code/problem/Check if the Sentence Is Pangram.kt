@@ -21,7 +21,7 @@ class `Check if the Sentence Is Pangram` {
     private fun checkIfPangram(sentence: String): Boolean {
         val array = BooleanArray(26)
         for (i in sentence) {
-            array[i.toInt() - 'a'.toInt()] = true
+            array[i.code - 'a'.code] = true
         }
 
         return array.count { it } == 26

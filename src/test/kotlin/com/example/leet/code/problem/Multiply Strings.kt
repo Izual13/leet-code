@@ -31,10 +31,10 @@ class `Multiply Strings` {
                 val tmp = result[i + j + 1] - '0'
                 val z = x * y + tmp
 
-                result.setCharAt(i + j + 1, (z % 10 + '0'.toInt()).toChar())
+                result.setCharAt(i + j + 1, (z % 10 + '0'.code).toChar())
 
                 val oldValue = result[i + j] - '0'
-                result.setCharAt(i + j, (z / 10 + oldValue + '0'.toInt()).toChar())
+                result.setCharAt(i + j, (z / 10 + oldValue + '0'.code).toChar())
             }
         }
 

@@ -27,6 +27,6 @@ class `Excel Sheet Column Number` {
     }
 
     private fun titleToNumber(s: String): Int {
-        return s.asSequence().map { it.toInt() - 64 }.reduce { acc, e -> acc * 26 + e }
+        return s.asSequence().map { it.code - 64 }.reduce { acc, e -> acc * 26 + e }
     }
 }

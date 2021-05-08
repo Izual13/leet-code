@@ -23,7 +23,7 @@ class `Valid Palindrome` {
     }
 
     private fun isPalindrome(s: String): Boolean {
-        val lowerCase = s.toLowerCase()
+        val lowerCase = s.lowercase()
         var start = 0
         var end = s.lastIndex
 

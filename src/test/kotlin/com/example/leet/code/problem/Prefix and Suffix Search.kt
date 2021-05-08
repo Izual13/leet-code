@@ -46,7 +46,7 @@ class `Prefix and Suffix Search` {
                 return -1
             }
 
-            return map[result.maxBy { map[it]!! }]!!
+            return map[result.maxByOrNull { map[it]!! }]!!
         }
     }
 }
