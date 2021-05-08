@@ -30,7 +30,7 @@ class `Flatten Nested List Iterator` {
         Assertions.assertFalse(obj.hasNext())
     }
 
-
+    //stub
     private class NestedInteger {
         private var value: Int? = null
         private var list: ArrayList<NestedInteger> = ArrayList()
