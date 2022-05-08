@@ -1,15 +1,14 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.4.5"
+    id("org.springframework.boot") version "2.6.7"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.5.0"
-    kotlin("plugin.spring") version "1.5.0"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_16
 
 repositories {
     mavenCentral()
@@ -34,6 +33,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "16"
+        jvmTarget = "18"
     }
 }
