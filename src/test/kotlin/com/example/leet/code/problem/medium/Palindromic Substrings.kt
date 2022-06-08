@@ -22,30 +22,25 @@ class `Palindromic Substrings` {
         var result = 0
         var start = 0
         while (start <= last) {
-            var end = last+1
-            while (start < end) {
-                val ss = s.substring(start, end)
-                if (isPalindrom(ss)) {
-                    result += 1
-                }
-                end--
-            }
+            result += countPalindromic(s, start, start)
+            result += countPalindromic(s, start, start + 1)
             start++
         }
 
         return result
     }
 
-    private fun isPalindrom(s: String): Boolean {
-        var start = 0
-        var end = s.length - 1
+    private fun countPalindromic(s: String, a: Int, b: Int): Int {
+        var start = a
+        var end = b
+        var result = 0
 
-        while (start < end) {
-            if (s[start++] != s[end--]) {
-                return false
-            }
+        while (start >= 0 && end < s.length && s[start] == s[end]) {
+            start--
+            end++
+            result++
         }
 
-        return true
+        return result
     }
 }
