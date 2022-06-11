@@ -2,7 +2,6 @@ package com.example.leet.code.problem.medium
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import kotlin.math.max
 
 @Suppress("ClassName")
 class `Find the Duplicate Number` {
@@ -23,17 +22,33 @@ class `Find the Duplicate Number` {
     }
 
 
+    @Test
+    fun test4() {
+        Assertions.assertEquals(4, findDuplicate(intArrayOf(1, 4, 4, 2, 4)))
+    }
+
+
+    @Test
+    fun test5() {
+        Assertions.assertEquals(9, findDuplicate(intArrayOf(2, 5, 9, 6, 9, 3, 8, 9, 7, 1)))
+    }
+
+
     private fun findDuplicate(nums: IntArray): Int {
-        var sum = 0
-        var m = 0
-        for (i in nums) {
-            sum += i
-            m = max(m, i)
+        var slow = nums[0]
+        var fast = nums[0]
+        do {
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        } while (slow != fast)
+
+        slow = nums[0]
+
+        while (slow != fast) {
+            slow = nums[slow]
+            fast = nums[fast]
         }
 
-        val expected = (m + 1) * m / 2
-        val remainder = sum - expected
-
-        return remainder / (nums.size - m)
+        return slow
     }
 }
