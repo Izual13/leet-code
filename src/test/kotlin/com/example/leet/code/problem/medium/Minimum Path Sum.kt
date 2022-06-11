@@ -2,7 +2,7 @@ package com.example.leet.code.problem.medium
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.LinkedList
+import java.util.*
 import kotlin.math.min
 
 @Suppress("ClassName")
@@ -71,6 +71,6 @@ class `Minimum Path Sum` {
                 q.push(x to y + 1)
             }
         }
-        return cache[grid.lastIndex][grid[0].lastIndex]
+        return cache.last().last()
     }
 }
