@@ -2,7 +2,7 @@ package com.example.leet.code.problem.medium
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.LinkedList
+import java.util.*
 
 @Suppress("ClassName")
 class `Flatten Binary Tree to Linked List` {
@@ -29,6 +29,37 @@ class `Flatten Binary Tree to Linked List` {
         t2.right = t4
 
         flatten(root)
+
+        Assertions.assertEquals(1, root.`val`)
+        Assertions.assertEquals(2, root.right!!.`val`)
+        Assertions.assertEquals(3, root.right!!.right!!.`val`)
+        Assertions.assertEquals(4, root.right!!.right!!.right!!.`val`)
+        Assertions.assertEquals(5, root.right!!.right!!.right!!.right!!.`val`)
+
+        Assertions.assertNull(root.left)
+        Assertions.assertNull(root.right!!.left)
+        Assertions.assertNull(root.right!!.right!!.left)
+        Assertions.assertNull(root.right!!.right!!.right!!.left)
+        Assertions.assertNull(root.right!!.right!!.right!!.right!!.left)
+        Assertions.assertNull(root.right!!.right!!.right!!.right!!.right)
+    }
+
+    @Test
+    fun test3() {
+
+        val root = TreeNode(1)
+        val t2 = TreeNode(2)
+        val t3 = TreeNode(3)
+        val t4 = TreeNode(4)
+        val t5 = TreeNode(5)
+
+        root.left = t2
+        root.right = t5
+
+        t2.left = t3
+        t2.right = t4
+
+        flattenRecursive(root)
 
         Assertions.assertEquals(1, root.`val`)
         Assertions.assertEquals(2, root.right!!.`val`)
@@ -76,6 +107,28 @@ class `Flatten Binary Tree to Linked List` {
 
             stub = node
         }
+    }
 
+    private fun flattenRecursive(root: TreeNode?): Unit {
+        if (root == null || (root.left == null && root.right == null)) {
+            return
+        }
+
+
+        if (root.left != null) {
+            flattenRecursive(root.left)
+
+            val tmp = root.right
+            root.right = root.left
+            root.left = null
+
+            var curr = root.right
+            while (curr!!.right != null) {
+                curr = curr.right
+            }
+            curr.right = tmp
+        }
+
+        flattenRecursive(root.right);
     }
 }
