@@ -53,7 +53,6 @@ class `Number of Islands` {
             for (x in grid[0].indices) {
                 if (grid[y][x] != '1') {
                     findUnion.close(width * y + x)
-                    println(findUnion.toString())
                     continue
                 }
 
@@ -68,8 +67,6 @@ class `Number of Islands` {
                 if (x > 0 && grid[y][x - 1] == '1') {
                     findUnion.connected(width * y + x - 1, width * y + x)
                 }
-
-                println(findUnion.toString())
             }
         }
 
