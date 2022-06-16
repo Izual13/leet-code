@@ -2,7 +2,9 @@ package com.example.leet.code.problem.medium
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.util.*
 import kotlin.math.max
+
 
 @Suppress("ClassName")
 class `Longest String Chain` {
@@ -29,7 +31,7 @@ class `Longest String Chain` {
 
     @Test
     fun test5() {
-        Assertions.assertEquals(4, longestStrChain(arrayOf("a","ab","ac","bd","abc","abd","abdd")))
+        Assertions.assertEquals(4, longestStrChain(arrayOf("a", "ab", "ac", "bd", "abc", "abd", "abdd")))
     }
 
 
@@ -58,7 +60,7 @@ class `Longest String Chain` {
             var startShort = 0
             var startLong = 0
             while (startLong <= word.lastIndex) {
-                if (errorCount > 1 || (errorCount==0 && startLong == word.lastIndex)) {
+                if (errorCount > 1 || (errorCount == 0 && startLong == word.lastIndex)) {
                     break
                 }
 
@@ -69,7 +71,6 @@ class `Longest String Chain` {
                     startShort++
                     startLong++
                 }
-
             }
 
             if (errorCount <= 1) {
@@ -77,7 +78,6 @@ class `Longest String Chain` {
                 if (tmp.length > result.length) {
                     result = tmp
                 }
-                break
             }
         }
 
