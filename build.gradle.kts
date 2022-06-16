@@ -27,7 +27,7 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    maxParallelForks = 4
+    maxParallelForks = 8
 }
 
 tasks.withType<KotlinCompile> {
