@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 @Suppress("ClassName")
+/** duplicate in [com.example.leet.code.problem.misc.Longest Palindromic Substring] */
 class `Longest Palindromic Substring` {
 
     @Test
