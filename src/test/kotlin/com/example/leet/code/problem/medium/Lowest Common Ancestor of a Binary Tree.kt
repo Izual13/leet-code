@@ -65,11 +65,7 @@ class `Lowest Common Ancestor of a Binary Tree` {
 
 
     private fun lowestCommonAncestor(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
-        if (root == null) {
-            return null
-        }
-
-        if (p?.`val` == root.`val` || q?.`val` == root.`val`) {
+        if (root == null || p?.`val` == root.`val` || q?.`val` == root.`val`) {
             return root
         }
 
