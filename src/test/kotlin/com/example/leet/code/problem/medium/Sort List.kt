@@ -12,7 +12,6 @@ class `Sort List` {
 
     @Test
     fun test1() {
-//        4,2,1,3
         val l1 = ListNode(1)
         val l2 = ListNode(2)
         val l3 = ListNode(3)
