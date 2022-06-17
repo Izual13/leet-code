@@ -38,7 +38,6 @@ class `Lowest Common Ancestor of a Binary Tree` {
 
     @Test
     fun test3() {
-        //[3,5,1,6,2,0,8,null,null,7,4]
         val t0 = TreeNode(0)
         val t1 = TreeNode(1)
         val t2 = TreeNode(2)
