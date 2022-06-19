@@ -30,18 +30,16 @@ class `Longest Increasing Subsequence` {
 
 
     private fun lengthOfLIS(nums: IntArray): Int {
-        val cache = IntArray(nums.size) { 1 }
-        var result = 1
+        val dp = IntArray(nums.size) { 1 }
 
-        for (i in 0..nums.lastIndex) {
-            for (j in 0 until i) {
-                if (nums[i] > nums[j]) {
-                    cache[i] = max(cache[i], cache[j] + 1)
-                    result = max(result, cache[i])
+        for (i in nums.lastIndex downTo 0) {
+            for (j in i + 1..nums.lastIndex) {
+                if (nums[i] < nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + 1)
                 }
             }
         }
 
-        return result
+        return dp.maxOrNull()!!
     }
 }
