@@ -26,55 +26,35 @@ class `Find All Anagrams in a String` {
         Assertions.assertEquals(listOf(1, 3, 6, 7), findAnagrams("acdcaeccde", "c"))
     }
 
+    @Test
+    fun test5() {
+        Assertions.assertEquals(listOf(3, 4, 6), findAnagrams("abaacbabc", "abc"))
+    }
+
 
     private fun findAnagrams(s: String, p: String): List<Int> {
         val result = ArrayList<Int>()
-        val map = HashMap<Char, Int>()
-        val tmp = HashMap<Char, Int>(map)
+        val map = IntArray(26)
 
         for (c in p) {
-            map[c] = map.getOrDefault(c, 0) + 1
-            tmp[c] = 0
+            map[c - 'a']++
         }
 
-        var start = 0
-        var count = 0
+        var left = 0
+        var right = 0
+        var count = p.length
 
-        while (start <= s.length - p.length) {
-            while (count != p.length && start <= s.length - p.length) {
-                val c = s[start + count]
-                if (tmp[c] != null) {
-                    tmp[c] = tmp[c]!! + 1
-                    count++
-
-                    while (tmp[c]!! > map[c]!!) {
-                        val c2 = s[start]
-                        if (tmp[c2] != null) {
-                            tmp[c2] = tmp[c2]!! - 1
-                            start++
-                            count--
-                        }
-                    }
-                } else {
-                    val c2 = s[start]
-                    if (tmp[c2] != null) {
-                        tmp[c2] = tmp[c2]!! - 1
-                        count--
-                    }
-                    start++
-                }
-            }
-            if (count == p.length) {
-                result.add(start)
+        while (right < s.length) {
+            if (map[s[right++] - 'a']-- >= 1) {
+                count--
             }
 
-            if(start <= s.length - p.length){
-                val c2 = s[start]
-                if (tmp[c2] != null) {
-                    tmp[c2] = tmp[c2]!! - 1
-                    count--
-                }
-                start++
+            if (count == 0) {
+                result.add(left)
+            }
+
+            if (right - left == p.length && map[s[left++] - 'a']++ >= 0) {
+                count++
             }
         }
 
