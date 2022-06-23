@@ -45,7 +45,7 @@ class `Find All Anagrams in a String` {
         var count = p.length
 
         while (right < s.length) {
-            if (map[s[right++] - 'a']-- >= 1) {
+            if (map[s[right++] - 'a']-- > 0) {
                 count--
             }
 
@@ -53,7 +53,7 @@ class `Find All Anagrams in a String` {
                 result.add(left)
             }
 
-            if (right - left == p.length && map[s[left++] - 'a']++ >= 0) {
+            if (right - left == p.length && map[s[left++] - 'a']++ > -1) {
                 count++
             }
         }
