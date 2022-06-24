@@ -31,6 +31,11 @@ class `Find Minimum in Rotated Sorted Array` {
         Assertions.assertEquals(555, findMin(intArrayOf(555)))
     }
 
+    @Test
+    fun test6() {
+        Assertions.assertEquals(1, findMin(intArrayOf(2, 1)))
+    }
+
 
     private fun findMin(nums: IntArray): Int {
         if (nums.size == 1) {
@@ -40,27 +45,17 @@ class `Find Minimum in Rotated Sorted Array` {
         var start = 0
         var end = nums.lastIndex
 
-        if (nums[end] > nums[start]) {
-            return nums[start]
-        }
-
-        while (start <= end) {
+        while (start < end) {
             val mid = start + (end - start) / 2
 
-            if (nums[mid] > nums[mid + 1]) {
-                return nums[mid + 1]
-            }
-
-            if (nums[mid - 1] > nums[mid]) {
+            if (mid > 0 && nums[mid] < nums[mid - 1]) {
                 return nums[mid]
-            }
-
-            if (nums[mid] > nums[0]) {
+            } else if (nums[mid] >= nums[start] && nums[mid] > nums[end]) {
                 start = mid + 1
             } else {
                 end = mid - 1
             }
         }
-        return -1
+        return nums[start]
     }
 }
