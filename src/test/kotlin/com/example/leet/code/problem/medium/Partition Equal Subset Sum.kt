@@ -16,6 +16,17 @@ class `Partition Equal Subset Sum` {
         Assertions.assertEquals(false, canPartition(intArrayOf(1, 2, 3, 5)))
     }
 
+    @Test
+    fun test3() {
+        val ints = intArrayOf(
+            100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+            100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+            100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+            100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+            100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,99,97)
+        Assertions.assertEquals(false, canPartition(ints))
+    }
+
 
     private fun canPartition(nums: IntArray): Boolean {
         val sum = nums.sum()
@@ -29,17 +40,26 @@ class `Partition Equal Subset Sum` {
         return find(nums, half)
     }
 
-    private fun find(nums: IntArray, sum: Int, c: Int = 0): Boolean {
+    private fun find(nums: IntArray, sum: Int): Boolean {
         if (sum == 0) {
             return true
         } else if (sum < 0) {
             return false
         }
 
-        for (i in c until nums.lastIndex) {
-            val find = find(nums, sum - nums[i], i + 1)
-            if (find) {
-                return true
+        var set = HashSet<Int>()
+        set.add(0)
+
+        for (n in nums) {
+            for (j in set) {
+                val tmp = j + n
+                if (sum == tmp) {
+                    return true
+                }
+                val newSet = HashSet<Int>()
+                newSet.add(tmp)
+                newSet.add(j)
+                set = newSet
             }
         }
 
