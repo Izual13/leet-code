@@ -42,7 +42,7 @@ class `Course Schedule` {
             map[a] = list
         }
 
-        for (i in ArrayList(map.keys)) {
+        for (i in map.keys.toList()) {
             if (!dfs(i, map)) {
                 return false
             }
