@@ -109,41 +109,4 @@ class `Path Sum III` {
         result += pathSum(root.right, targetSum, root.`val` + accumulator)
         return result
     }
-//
-//    private fun pathSumLeft(root: TreeNode?, targetSum: Int, accumulator: Int = 0): Int {
-//        if (root == null) {
-//            return if (accumulator == targetSum) 1 else 0
-//        }
-//
-//        var result = if (root.`val` + accumulator == targetSum) 1 else 0
-//
-//        if (result == 1) {
-//            println(123)
-//        }
-//
-//        result += pathSumLeft(root.left, targetSum, accumulator + root.`val`)
-//        result += pathSum(root.left, targetSum)
-//        result += pathSum(root.right, targetSum)
-//
-//        return result
-//    }
-//
-//    private fun pathSumRight(root: TreeNode?, targetSum: Int, accumulator: Int = 0): Int {
-//        if (root == null) {
-//            return if (accumulator == targetSum) 1 else 0
-//        }
-//
-//        var result = if (root.`val` + accumulator == targetSum) 1 else 0
-//
-//        if (result == 1) {
-//            println(123)
-//        }
-//
-//        result += pathSumRight(root.right, targetSum, accumulator + root.`val`)
-//        result += pathSum(root.left, targetSum)
-//        result += pathSum(root.right, targetSum)
-//
-//        return result
-//    }
-
 }
