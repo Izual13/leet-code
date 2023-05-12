@@ -78,7 +78,7 @@ class `Copy List with Random Pointer` {
             cur = cur.next!!.next
         }
 
-        val result = node!!.next
+        val result = node.next
         cur = node.next
         var old = node
         while (cur?.next?.next != null) {
