@@ -24,4 +24,19 @@ public class Day3 {
         }
         return result;
     }
+
+    //Partitioning Into Minimum Number Of Deci-Binary Numbers
+    public int minPartitions(String n) {
+        char result = '0';
+        for(int i=0;i < n.length();i++){
+            char c = n.charAt(i);
+            if(c=='9'){
+                return 9;
+            }else if(result<c){
+                result=c;
+            }
+        }
+
+        return result - '0';
+    }
 }
