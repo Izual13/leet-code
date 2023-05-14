@@ -54,4 +54,36 @@ public class Day4 {
 
         return result;
     }
+
+    //Merge Nodes in Between Zeros
+      public class ListNode {
+          int val;
+          ListNode next;
+          ListNode() {}
+          ListNode(int val) { this.val = val; }
+          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     }
+        public ListNode mergeNodes(ListNode head) {
+            ListNode result = new ListNode();
+            ListNode tmpResult = result;
+
+            int tmp=0;
+            while(head.next!=null){
+                ListNode c = head.next;
+
+                if(c.val==0){
+                    tmpResult.next = new ListNode();
+                    tmpResult = tmpResult.next;
+                    tmpResult.val = tmp;
+                    tmp=0;
+                }else{
+                    tmp+=c.val;
+                }
+
+
+                head = c;
+            }
+
+            return result.next;
+        }
 }
