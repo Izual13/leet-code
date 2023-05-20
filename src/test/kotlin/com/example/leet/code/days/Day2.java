@@ -1,4 +1,4 @@
-package com.example.leet.code;
+package com.example.leet.code.days;
 
 public class Day2 {
     //Solving Questions With Brainpower

@@ -1,4 +1,6 @@
-package com.example.leet.code;
+package com.example.leet.code.days;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 public class Day1 {

@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "3.0.6"
+    id("org.springframework.boot") version "3.1.0"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.21"
     kotlin("plugin.spring") version "1.8.21"
@@ -21,7 +21,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("io.projectreactor:reactor-test")
 }
 
