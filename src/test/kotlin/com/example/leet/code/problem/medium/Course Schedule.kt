@@ -10,7 +10,7 @@ class `Course Schedule` {
 
     @Test
     fun test1() {
-        Assertions.assertEquals(true, canFinish(2, arrayOf(intArrayOf(1, 0))))
+        Assertions.assertEquals(true, canFinish(1, arrayOf(intArrayOf(1, 0))))
     }
 
     @Test
@@ -20,7 +20,7 @@ class `Course Schedule` {
 
     @Test
     fun test3() {
-        Assertions.assertEquals(true, canFinish(5, arrayOf(intArrayOf(1, 4), intArrayOf(2, 4), intArrayOf(3, 1), intArrayOf(3, 2))))
+        Assertions.assertEquals(true, canFinish(4, arrayOf(intArrayOf(1, 4), intArrayOf(2, 4), intArrayOf(3, 1), intArrayOf(3, 2))))
     }
 
     @Test
@@ -35,6 +35,7 @@ class `Course Schedule` {
 
 
     private fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
+        Assertions.assertEquals(numCourses, prerequisites.size)
         val map = HashMap<Int, ArrayList<Int>>()
         for ((a, b) in prerequisites) {
             val list = map.getOrDefault(a, ArrayList())
@@ -58,7 +59,7 @@ class `Course Schedule` {
 
 
         visited.add(key)
-        for (i in map.getOrDefault(key, listOf())) {
+        for (i in map.getOrDefault(key, arrayListOf())) {
             if (!dfs(i, map, visited)) {
                 return false
             }
