@@ -1,5 +1,8 @@
 package com.example.leet.code.days;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Day10 {
     //Stone Game II
     public int stoneGameII(int[] piles) {
@@ -28,5 +31,21 @@ public class Day10 {
             }
         }
         return dp[s][m];
+    }
+
+    //Convert an Array Into a 2D Array With Conditions
+    public List<List<Integer>> findMatrix(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        int[] c = new int[nums.length+1];
+
+        for(int n: nums){
+            if(result.size()<++c[n]){
+                result.add(new ArrayList<>());
+            }
+            result.get(c[n]-1).add(n);
+        }
+
+        return result;
     }
 }
