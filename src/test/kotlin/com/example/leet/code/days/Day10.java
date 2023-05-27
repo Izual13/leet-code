@@ -1,7 +1,9 @@
 package com.example.leet.code.days;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Day10 {
     //Stone Game II
@@ -44,6 +46,26 @@ public class Day10 {
                 result.add(new ArrayList<>());
             }
             result.get(c[n]-1).add(n);
+        }
+
+        return result;
+    }
+
+    //Group the People Given the Group Size They Belong To
+    public List<List<Integer>> groupThePeople(int[] groupSizes) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        Map<Integer, List<Integer>> map = new HashMap<>();
+
+        for(int i=0;i<groupSizes.length;i++){
+            int max = groupSizes[i];
+            List<Integer> l = map.computeIfAbsent(max, k -> new ArrayList<>());
+
+            l.add(i);
+            if(l.size()==max){
+                result.add(new ArrayList<>(l));
+                l.clear();
+            }
         }
 
         return result;
