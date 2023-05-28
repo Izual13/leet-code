@@ -38,4 +38,49 @@ public class Day11 {
         return root;
     }
 
+    //Sum of Nodes with Even-Valued Grandparent
+
+    public int sumEvenGrandparent(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int sum = 0;
+        if((root.val & 1) != 1){
+            sum+=getSum(root);
+        }
+
+        sum+=sumEvenGrandparent(root.left);
+        sum+=sumEvenGrandparent(root.right);
+
+
+        return sum;
+    }
+
+    int getSum(TreeNode root){
+        int result=0;
+        TreeNode l = root.left;
+        TreeNode r = root.right;
+
+        if(l!=null){
+            if(l.left!=null){
+                result+=l.left.val;
+            }
+
+            if(l.right!=null){
+                result+=l.right.val;
+            }
+        }
+
+        if(r!=null){
+            if(r.left!=null){
+                result+=r.left.val;
+            }
+
+            if(r.right!=null){
+                result+=r.right.val;
+            }
+        }
+        return result;
+    }
+
 }
